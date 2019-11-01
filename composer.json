@@ -1,0 +1,43 @@
+{
+    "name": "webignition/base-basil-test-case",
+    "description": "",
+    "keywords": [],
+    "homepage": "https://github.com/webignition/base-basil-test-case",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jon Cram",
+            "email": "webignition@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "webignition\\BaseBasilTestCase\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "webignition\\BaseBasilTestCase\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "cs": "./vendor/bin/phpcs src tests --colors --standard=PSR2",
+        "static-analysis": "./vendor/bin/phpstan analyse src tests --level=7",
+        "test": "./vendor/bin/phpunit --colors=always",
+        "ci": [
+            "@composer cs",
+            "@composer static-analysis",
+            "@composer test"
+        ]
+    },
+    "require": {
+        "php": ">=7.2",
+        "symfony/panther": "^0.6",
+        "phpunit/phpunit": "~8.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*",
+        "phpstan/phpstan": "^0.11.15"
+    }
+}
