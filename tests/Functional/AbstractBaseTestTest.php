@@ -1,7 +1,5 @@
 <?php
 
-/** @noinspection PhpUnhandledExceptionInspection */
-
 declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase\Tests\Functional;
@@ -12,8 +10,8 @@ use webignition\DomElementLocator\ElementLocator;
 
 class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTest
 {
-    const FIXTURES_RELATIVE_PATH = '/Fixtures';
-    const FIXTURES_HTML_RELATIVE_PATH = '/html';
+    private const FIXTURES_RELATIVE_PATH = '/Fixtures';
+    private const FIXTURES_HTML_RELATIVE_PATH = '/html';
 
     /**
      * @var WebServerRunner
