@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase\Tests\Functional;
 
-use webignition\BasePantherTestCase\Options;
-use webignition\BasePantherTestCase\WebServerRunner;
 use webignition\DomElementLocator\ElementLocator;
+use webignition\SymfonyPantherWebServerRunner\Options;
+use webignition\SymfonyPantherWebServerRunner\WebServerRunner;
 
 class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTest
 {
