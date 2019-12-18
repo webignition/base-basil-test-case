@@ -89,7 +89,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->assertSame('new value', self::$inspector->getValue($input));
     }
 
-    private static function stopWebServer()
+    private static function stopWebServer(): void
     {
         self::$webServerRunner->stop();
     }

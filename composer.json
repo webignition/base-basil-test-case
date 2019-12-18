@@ -41,7 +41,7 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "3.*",
-        "phpstan/phpstan": "^0.11.15",
+        "phpstan/phpstan": "^0.12",
         "webignition/base-panther-test-case": "^0.1.0"
     }
 }
