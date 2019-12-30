@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase\Tests\Functional;
 
-use webignition\DomElementLocator\ElementLocator;
+use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyPantherWebServerRunner\Options;
 use webignition\SymfonyPantherWebServerRunner\WebServerRunner;
 
@@ -68,21 +68,21 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
     public function testNavigatorIsInstantiated()
     {
-        $h1 = $this->navigator->findOne(new ElementLocator('h1'));
+        $h1 = $this->navigator->findOne(new ElementIdentifier('h1'));
 
         $this->assertSame('Test fixture h1 content', $h1->getText());
     }
 
     public function testInspectorInstantiated()
     {
-        $input = $this->navigator->find(new ElementLocator('.input'));
+        $input = $this->navigator->find(new ElementIdentifier('.input'));
 
         $this->assertSame('initial value', self::$inspector->getValue($input));
     }
 
     public function testMutatorInstantiated()
     {
-        $input = $this->navigator->find(new ElementLocator('.input'));
+        $input = $this->navigator->find(new ElementIdentifier('.input'));
         $this->assertSame('initial value', self::$inspector->getValue($input));
 
         self::$mutator->setValue($input, 'new value');
