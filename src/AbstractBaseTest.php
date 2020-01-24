@@ -11,7 +11,7 @@ use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\WebDriverElementInspector\Inspector;
 use webignition\WebDriverElementMutator\Mutator;
 
-abstract class AbstractBaseTest extends TestCase
+abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterface
 {
     /**
      * @var Navigator
@@ -71,12 +71,12 @@ abstract class AbstractBaseTest extends TestCase
         $this->navigator = Navigator::create(self::$crawler);
     }
 
-    protected function setBasilTestPath(string $testPath): void
+    public function setBasilTestPath(string $testPath): void
     {
         $this->basilTestPath = $testPath;
     }
 
-    protected function setBasilStepName(string $stepName): void
+    public function setBasilStepName(string $stepName): void
     {
         $this->basilStepName = $stepName;
     }
