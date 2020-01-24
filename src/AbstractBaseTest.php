@@ -38,6 +38,16 @@ abstract class AbstractBaseTest extends TestCase
      */
     protected static $crawler;
 
+    /**
+     * @var string
+     */
+    private $basilTestPath;
+
+    /**
+     * @var string
+     */
+    private $basilStepName;
+
     public static function setUpBeforeClass(): void
     {
         self::$client = Client::createChromeClient();
@@ -59,5 +69,25 @@ abstract class AbstractBaseTest extends TestCase
         self::$crawler = self::$client->refreshCrawler();
 
         $this->navigator = Navigator::create(self::$crawler);
+    }
+
+    protected function setBasilTestPath(string $testPath): void
+    {
+        $this->basilTestPath = $testPath;
+    }
+
+    protected function setBasilStepName(string $stepName): void
+    {
+        $this->basilStepName = $stepName;
+    }
+
+    public function getBasilTestPath(): string
+    {
+        return $this->basilTestPath ?? '';
+    }
+
+    public function getBasilStepName(): string
+    {
+        return $this->basilStepName ?? '';
     }
 }
