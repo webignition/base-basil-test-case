@@ -89,6 +89,24 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->assertSame('new value', self::$inspector->getValue($input));
     }
 
+    public function testBasilTestPath()
+    {
+        $basilTestPath = '/path/to/test.yml';
+
+        $this->setBasilTestPath($basilTestPath);
+
+        $this->assertSame($basilTestPath, $this->getBasilTestPath());
+    }
+
+    public function testBasilStepName()
+    {
+        $stepName = 'step name';
+
+        $this->setBasilStepName($stepName);
+
+        $this->assertSame($stepName, $this->getBasilStepName());
+    }
+
     private static function stopWebServer(): void
     {
         self::$webServerRunner->stop();
