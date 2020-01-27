@@ -93,9 +93,9 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
     {
         $basilTestPath = '/path/to/test.yml';
 
-        $this->setBasilTestPath($basilTestPath);
+        self::setBasilTestPath($basilTestPath);
 
-        $this->assertSame($basilTestPath, $this->getBasilTestPath());
+        $this->assertSame($basilTestPath, self::getBasilTestPath());
     }
 
     public function testBasilStepName()
