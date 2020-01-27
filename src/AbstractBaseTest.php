@@ -41,7 +41,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     /**
      * @var string
      */
-    private $basilTestPath;
+    private static $basilTestPath;
 
     /**
      * @var string
@@ -71,9 +71,9 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         $this->navigator = Navigator::create(self::$crawler);
     }
 
-    public function setBasilTestPath(string $testPath): void
+    public static function setBasilTestPath(string $testPath): void
     {
-        $this->basilTestPath = $testPath;
+        self::$basilTestPath = $testPath;
     }
 
     public function setBasilStepName(string $stepName): void
@@ -81,9 +81,9 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         $this->basilStepName = $stepName;
     }
 
-    public function getBasilTestPath(): string
+    public static function getBasilTestPath(): string
     {
-        return $this->basilTestPath ?? '';
+        return self::$basilTestPath ?? '';
     }
 
     public function getBasilStepName(): string
