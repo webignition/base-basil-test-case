@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase\Tests\Functional;
 
+use PHPUnit\Runner\BaseTestRunner;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyPantherWebServerRunner\Options;
 use webignition\SymfonyPantherWebServerRunner\WebServerRunner;
@@ -105,6 +106,13 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->setBasilStepName($stepName);
 
         $this->assertSame($stepName, $this->getBasilStepName());
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        $this->assertSame(BaseTestRunner::STATUS_PASSED, $this->getStatus());
     }
 
     private static function stopWebServer(): void

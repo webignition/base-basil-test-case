@@ -12,4 +12,5 @@ interface BasilTestCaseInterface extends Test
     public function setBasilStepName(string $stepName): void;
     public static function getBasilTestPath(): string;
     public function getBasilStepName(): string;
+    public function getStatus(): int;
 }
