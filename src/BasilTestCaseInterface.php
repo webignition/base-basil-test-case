@@ -13,4 +13,10 @@ interface BasilTestCaseInterface extends Test
     public static function getBasilTestPath(): string;
     public function getBasilStepName(): string;
     public function getStatus(): int;
+    public function getCurrentStatement(): string;
+
+    /**
+     * @return string[]
+     */
+    public function getCompletedStatements(): array;
 }

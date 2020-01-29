@@ -48,6 +48,16 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
      */
     private $basilStepName;
 
+    /**
+     * @var string
+     */
+    protected $currentStatement = '';
+
+    /**
+     * @var string[]
+     */
+    protected $completedStatements = [];
+
     public static function setUpBeforeClass(): void
     {
         self::$client = Client::createChromeClient();
@@ -89,5 +99,15 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public function getBasilStepName(): string
     {
         return $this->basilStepName ?? '';
+    }
+
+    public function getCurrentStatement(): string
+    {
+        return $this->currentStatement;
+    }
+
+    public function getCompletedStatements(): array
+    {
+        return $this->completedStatements;
     }
 }
