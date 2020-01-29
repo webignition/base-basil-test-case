@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase;
 
-class Statement
+class Statement implements StatementInterface
 {
     private const TYPE_ACTION = 'action';
     private const TYPE_ASSERTION = 'assertion';
