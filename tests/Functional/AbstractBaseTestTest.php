@@ -108,6 +108,34 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->assertSame($stepName, $this->getBasilStepName());
     }
 
+    public function testCurrentStatement()
+    {
+        $this->assertSame('', $this->getCurrentStatement());
+
+        $currentStatement = 'current statement';
+        $this->currentStatement = $currentStatement;
+
+        $this->assertSame($currentStatement, $this->getCurrentStatement());
+    }
+
+    public function testCompletedStatements()
+    {
+        $this->assertSame([], $this->getCompletedStatements());
+
+        $this->completedStatements[] = 'statement1';
+        $this->completedStatements[] = 'statement2';
+        $this->completedStatements[] = 'statement3';
+
+        $this->assertSame(
+            [
+                'statement1',
+                'statement2',
+                'statement3',
+            ],
+            $this->getCompletedStatements()
+        );
+    }
+
     protected function tearDown(): void
     {
         parent::tearDown();
