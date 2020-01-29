@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase\Tests\Functional;
 
 use PHPUnit\Runner\BaseTestRunner;
+use webignition\BaseBasilTestCase\Statement;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyPantherWebServerRunner\Options;
 use webignition\SymfonyPantherWebServerRunner\WebServerRunner;
@@ -110,9 +111,9 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
     public function testCurrentStatement()
     {
-        $this->assertSame('', $this->getCurrentStatement());
+        $this->assertNull($this->getCurrentStatement());
 
-        $currentStatement = 'current statement';
+        $currentStatement = Statement::createAction('click $".selector"');
         $this->currentStatement = $currentStatement;
 
         $this->assertSame($currentStatement, $this->getCurrentStatement());
@@ -122,16 +123,12 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
     {
         $this->assertSame([], $this->getCompletedStatements());
 
-        $this->completedStatements[] = 'statement1';
-        $this->completedStatements[] = 'statement2';
-        $this->completedStatements[] = 'statement3';
+        $this->completedStatements[] = Statement::createAction('click $".selector"');
+        $this->completedStatements[] = Statement::createAssertion('$page.url is "http://example.com"');
+        $this->completedStatements[] = Statement::createAssertion('$page.title is "Page Title"');
 
         $this->assertSame(
-            [
-                'statement1',
-                'statement2',
-                'statement3',
-            ],
+            $this->completedStatements,
             $this->getCompletedStatements()
         );
     }

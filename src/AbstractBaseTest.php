@@ -49,12 +49,12 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     private $basilStepName;
 
     /**
-     * @var string
+     * @var StatementInterface|null
      */
-    protected $currentStatement = '';
+    protected $currentStatement;
 
     /**
-     * @var string[]
+     * @var StatementInterface[]
      */
     protected $completedStatements = [];
 
@@ -101,7 +101,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->basilStepName ?? '';
     }
 
-    public function getCurrentStatement(): string
+    public function getCurrentStatement(): ?StatementInterface
     {
         return $this->currentStatement;
     }
