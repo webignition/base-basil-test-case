@@ -133,6 +133,27 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         );
     }
 
+    public function testExaminedValue()
+    {
+        $this->assertNull($this->getExaminedValue());
+
+        $examinedValue = 'examined value';
+        $this->examinedValue = $examinedValue;
+
+        $this->assertSame($examinedValue, $this->examinedValue);
+    }
+
+    public function testExpectedValue()
+    {
+        $this->assertNull($this->getExpectedValue());
+
+        $expectedValue = 'expected value';
+        $this->expectedValue = $expectedValue;
+
+        $this->assertSame($expectedValue, $this->expectedValue);
+    }
+
+
     protected function tearDown(): void
     {
         parent::tearDown();
