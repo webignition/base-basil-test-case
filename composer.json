@@ -33,9 +33,9 @@
     },
     "require": {
         "php": ">=7.2",
-        "symfony/panther": "^0.6",
+        "symfony/panther": "^0.6|^0.7",
         "phpunit/phpunit": "~8.0",
-        "webignition/symfony-panther-dom-crawler-navigator": ">=0.15,<1",
+        "webignition/symfony-panther-dom-crawler-navigator": ">=0.16,<1",
         "webignition/webdriver-element-inspector": ">=0.6,<1",
         "webignition/webdriver-element-mutator": ">=0.2,<1"
     },
