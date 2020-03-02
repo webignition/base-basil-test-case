@@ -121,7 +121,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->completedStatements;
     }
 
-    public function getExaminedValue(): ?string
+    public function getExaminedValue()
     {
         return $this->examinedValue;
     }

@@ -22,6 +22,9 @@ interface BasilTestCaseInterface extends Test
      */
     public function getCompletedStatements(): array;
 
-    public function getExaminedValue(): ?string;
+    /**
+     * @return mixed|null
+     */
+    public function getExaminedValue();
     public function getExpectedValue(): ?string;
 }
