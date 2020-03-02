@@ -9,9 +9,11 @@ use PHPUnit\Framework\Test;
 interface BasilTestCaseInterface extends Test
 {
     public static function setBasilTestPath(string $testPath): void;
-    public function setBasilStepName(string $stepName): void;
     public static function getBasilTestPath(): string;
+
+    public function setBasilStepName(string $stepName): void;
     public function getBasilStepName(): string;
+
     public function getStatus(): int;
     public function getCurrentStatement(): ?StatementInterface;
 
@@ -19,4 +21,7 @@ interface BasilTestCaseInterface extends Test
      * @return StatementInterface[]
      */
     public function getCompletedStatements(): array;
+
+    public function getExaminedValue(): ?string;
+    public function getExpectedValue(): ?string;
 }
