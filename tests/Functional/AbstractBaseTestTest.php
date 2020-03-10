@@ -153,6 +153,15 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->assertSame($expectedValue, $this->expectedValue);
     }
 
+    public function testSourceStatement()
+    {
+        $this->assertNull($this->getSourceStatement());
+
+        $sourceStatement = Statement::createAction('click $".selector"');
+        $this->sourceStatement = $sourceStatement;
+
+        $this->assertSame($sourceStatement, $this->getSourceStatement());
+    }
 
     protected function tearDown(): void
     {

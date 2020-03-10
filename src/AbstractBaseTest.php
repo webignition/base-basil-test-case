@@ -68,6 +68,11 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
      */
     protected $expectedValue;
 
+    /**
+     * @var StatementInterface|null
+     */
+    protected $sourceStatement;
+
     public static function setUpBeforeClass(): void
     {
         self::$client = Client::createChromeClient();
@@ -129,5 +134,10 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public function getExpectedValue(): ?string
     {
         return $this->expectedValue;
+    }
+
+    public function getSourceStatement(): ?StatementInterface
+    {
+        return $this->sourceStatement;
     }
 }
