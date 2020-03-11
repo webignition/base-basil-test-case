@@ -56,7 +56,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     /**
      * @var StatementInterface[]
      */
-    protected $completedStatements = [];
+    protected $handledStatements = [];
 
     /**
      * @var string|null
@@ -121,9 +121,9 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->currentStatement;
     }
 
-    public function getCompletedStatements(): array
+    public function getHandledStatements(): array
     {
-        return $this->completedStatements;
+        return $this->handledStatements;
     }
 
     public function getExaminedValue()

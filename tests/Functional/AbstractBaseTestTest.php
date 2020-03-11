@@ -119,17 +119,17 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->assertSame($currentStatement, $this->getCurrentStatement());
     }
 
-    public function testCompletedStatements()
+    public function testHandledStatements()
     {
-        $this->assertSame([], $this->getCompletedStatements());
+        $this->assertSame([], $this->getHandledStatements());
 
-        $this->completedStatements[] = Statement::createAction('click $".selector"');
-        $this->completedStatements[] = Statement::createAssertion('$page.url is "http://example.com"');
-        $this->completedStatements[] = Statement::createAssertion('$page.title is "Page Title"');
+        $this->handledStatements[] = Statement::createAction('click $".selector"');
+        $this->handledStatements[] = Statement::createAssertion('$page.url is "http://example.com"');
+        $this->handledStatements[] = Statement::createAssertion('$page.title is "Page Title"');
 
         $this->assertSame(
-            $this->completedStatements,
-            $this->getCompletedStatements()
+            $this->handledStatements,
+            $this->getHandledStatements()
         );
     }
 

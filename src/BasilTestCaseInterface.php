@@ -21,7 +21,7 @@ interface BasilTestCaseInterface extends Test
     /**
      * @return StatementInterface[]
      */
-    public function getCompletedStatements(): array;
+    public function getHandledStatements(): array;
 
     /**
      * @return mixed|null
