@@ -109,16 +109,6 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->assertSame($stepName, $this->getBasilStepName());
     }
 
-    public function testCurrentStatement()
-    {
-        $this->assertNull($this->getCurrentStatement());
-
-        $currentStatement = Statement::createAction('click $".selector"');
-        $this->currentStatement = $currentStatement;
-
-        $this->assertSame($currentStatement, $this->getCurrentStatement());
-    }
-
     public function testHandledStatements()
     {
         $this->assertSame([], $this->getHandledStatements());
@@ -151,16 +141,6 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->expectedValue = $expectedValue;
 
         $this->assertSame($expectedValue, $this->expectedValue);
-    }
-
-    public function testSourceStatement()
-    {
-        $this->assertNull($this->getSourceStatement());
-
-        $sourceStatement = Statement::createAction('click $".selector"');
-        $this->sourceStatement = $sourceStatement;
-
-        $this->assertSame($sourceStatement, $this->getSourceStatement());
     }
 
     protected function tearDown(): void

@@ -15,8 +15,6 @@ interface BasilTestCaseInterface extends Test
     public function getBasilStepName(): string;
 
     public function getStatus(): int;
-    public function getCurrentStatement(): ?StatementInterface;
-    public function getSourceStatement(): ?StatementInterface;
 
     /**
      * @return StatementInterface[]
