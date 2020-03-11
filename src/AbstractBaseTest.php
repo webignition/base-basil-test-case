@@ -49,14 +49,9 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     private $basilStepName;
 
     /**
-     * @var StatementInterface|null
-     */
-    protected $currentStatement;
-
-    /**
      * @var StatementInterface[]
      */
-    protected $completedStatements = [];
+    protected $handledStatements = [];
 
     /**
      * @var string|null
@@ -67,11 +62,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
      * @var string|null
      */
     protected $expectedValue;
-
-    /**
-     * @var StatementInterface|null
-     */
-    protected $sourceStatement;
 
     public static function setUpBeforeClass(): void
     {
@@ -116,14 +106,9 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->basilStepName ?? '';
     }
 
-    public function getCurrentStatement(): ?StatementInterface
+    public function getHandledStatements(): array
     {
-        return $this->currentStatement;
-    }
-
-    public function getCompletedStatements(): array
-    {
-        return $this->completedStatements;
+        return $this->handledStatements;
     }
 
     public function getExaminedValue()
@@ -134,10 +119,5 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public function getExpectedValue(): ?string
     {
         return $this->expectedValue;
-    }
-
-    public function getSourceStatement(): ?StatementInterface
-    {
-        return $this->sourceStatement;
     }
 }

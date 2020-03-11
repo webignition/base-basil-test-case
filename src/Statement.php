@@ -11,21 +11,23 @@ class Statement implements StatementInterface
 
     private $type;
     private $content;
+    private $sourceStatement;
 
-    private function __construct(string $type, string $content)
+    private function __construct(string $type, string $content, ?StatementInterface $sourceStatement = null)
     {
         $this->type = $type;
         $this->content = $content;
+        $this->sourceStatement = $sourceStatement;
     }
 
-    public static function createAction(string $content): Statement
+    public static function createAction(string $content, ?StatementInterface $sourceStatement = null): Statement
     {
-        return new Statement(self::TYPE_ACTION, $content);
+        return new Statement(self::TYPE_ACTION, $content, $sourceStatement);
     }
 
-    public static function createAssertion(string $content): Statement
+    public static function createAssertion(string $content, ?StatementInterface $sourceStatement = null): Statement
     {
-        return new Statement(self::TYPE_ASSERTION, $content);
+        return new Statement(self::TYPE_ASSERTION, $content, $sourceStatement);
     }
 
     public function getType(): string
@@ -36,5 +38,10 @@ class Statement implements StatementInterface
     public function getContent(): string
     {
         return $this->content;
+    }
+
+    public function getSourceStatement(): ?StatementInterface
+    {
+        return $this->sourceStatement;
     }
 }

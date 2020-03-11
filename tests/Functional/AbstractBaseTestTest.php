@@ -109,27 +109,17 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->assertSame($stepName, $this->getBasilStepName());
     }
 
-    public function testCurrentStatement()
+    public function testHandledStatements()
     {
-        $this->assertNull($this->getCurrentStatement());
+        $this->assertSame([], $this->getHandledStatements());
 
-        $currentStatement = Statement::createAction('click $".selector"');
-        $this->currentStatement = $currentStatement;
-
-        $this->assertSame($currentStatement, $this->getCurrentStatement());
-    }
-
-    public function testCompletedStatements()
-    {
-        $this->assertSame([], $this->getCompletedStatements());
-
-        $this->completedStatements[] = Statement::createAction('click $".selector"');
-        $this->completedStatements[] = Statement::createAssertion('$page.url is "http://example.com"');
-        $this->completedStatements[] = Statement::createAssertion('$page.title is "Page Title"');
+        $this->handledStatements[] = Statement::createAction('click $".selector"');
+        $this->handledStatements[] = Statement::createAssertion('$page.url is "http://example.com"');
+        $this->handledStatements[] = Statement::createAssertion('$page.title is "Page Title"');
 
         $this->assertSame(
-            $this->completedStatements,
-            $this->getCompletedStatements()
+            $this->handledStatements,
+            $this->getHandledStatements()
         );
     }
 
@@ -151,16 +141,6 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->expectedValue = $expectedValue;
 
         $this->assertSame($expectedValue, $this->expectedValue);
-    }
-
-    public function testSourceStatement()
-    {
-        $this->assertNull($this->getSourceStatement());
-
-        $sourceStatement = Statement::createAction('click $".selector"');
-        $this->sourceStatement = $sourceStatement;
-
-        $this->assertSame($sourceStatement, $this->getSourceStatement());
     }
 
     protected function tearDown(): void
