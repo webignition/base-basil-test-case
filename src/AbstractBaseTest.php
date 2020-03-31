@@ -69,6 +69,11 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
      */
     protected $examinedElementIdentifier;
 
+    /**
+     * @var ElementIdentifierInterface|null
+     */
+    protected $expectedElementIdentifier;
+
     public static function setUpBeforeClass(): void
     {
         self::$client = Client::createChromeClient();
@@ -130,5 +135,10 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public function getExaminedElementIdentifier(): ?ElementIdentifierInterface
     {
         return $this->examinedElementIdentifier;
+    }
+
+    public function getExpectedElementIdentifier(): ?ElementIdentifierInterface
+    {
+        return $this->expectedElementIdentifier;
     }
 }

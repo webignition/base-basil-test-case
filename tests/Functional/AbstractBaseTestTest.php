@@ -153,6 +153,16 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->assertSame($examinedElementIdentifier, $this->examinedElementIdentifier);
     }
 
+    public function testExpectedElementIdentifier()
+    {
+        $this->assertNull($this->getExpectedElementIdentifier());
+
+        $expectedElementIdentifier = new ElementIdentifier('.selector');
+        $this->expectedElementIdentifier = $expectedElementIdentifier;
+
+        $this->assertSame($expectedElementIdentifier, $this->expectedElementIdentifier);
+    }
+
     protected function tearDown(): void
     {
         parent::tearDown();
