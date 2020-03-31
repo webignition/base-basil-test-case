@@ -7,6 +7,7 @@ namespace webignition\BaseBasilTestCase;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
+use webignition\DomElementIdentifier\ElementIdentifierInterface;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\WebDriverElementInspector\Inspector;
 use webignition\WebDriverElementMutator\Mutator;
@@ -62,6 +63,11 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
      * @var string|null
      */
     protected $expectedValue;
+
+    /**
+     * @var ElementIdentifierInterface|null
+     */
+    protected $examinedElementIdentifier;
 
     public static function setUpBeforeClass(): void
     {
@@ -119,5 +125,10 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public function getExpectedValue(): ?string
     {
         return $this->expectedValue;
+    }
+
+    public function getExaminedElementIdentifier(): ?ElementIdentifierInterface
+    {
+        return $this->examinedElementIdentifier;
     }
 }

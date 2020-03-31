@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase;
 
 use PHPUnit\Framework\Test;
+use webignition\DomElementIdentifier\ElementIdentifierInterface;
 
 interface BasilTestCaseInterface extends Test
 {
@@ -26,4 +27,6 @@ interface BasilTestCaseInterface extends Test
      */
     public function getExaminedValue();
     public function getExpectedValue(): ?string;
+
+    public function getExaminedElementIdentifier(): ?ElementIdentifierInterface;
 }
