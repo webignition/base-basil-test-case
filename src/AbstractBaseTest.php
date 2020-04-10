@@ -7,6 +7,7 @@ namespace webignition\BaseBasilTestCase;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
+use webignition\BasilModels\Action\Factory\Factory as ActionFactory;
 use webignition\BasilModels\Assertion\Factory\Factory as AssertionFactory;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
@@ -76,6 +77,11 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected $expectedElementIdentifier;
 
     /**
+     * @var ActionFactory
+     */
+    protected $actionFactory;
+
+    /**
      * @var AssertionFactory
      */
     protected $assertionFactory;
@@ -101,6 +107,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         self::$crawler = self::$client->refreshCrawler();
 
         $this->navigator = Navigator::create(self::$crawler);
+        $this->actionFactory = ActionFactory::createFactory();
         $this->assertionFactory = AssertionFactory::createFactory();
     }
 
