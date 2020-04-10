@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "46d8613197468976a8c776a3b30db442",
+    "content-hash": "54123015074723cf6a7fb5bd12bcaa02",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -2316,17 +2316,59 @@
             "time": "2019-06-13T22:48:21+00:00"
         },
         {
-            "name": "webignition/php-dom-element-identifier",
-            "version": "0.11",
+            "name": "webignition/basil-models",
+            "version": "0.40",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webignition/php-dom-element-identifier.git",
-                "reference": "65b8b076726e0ef769cebd501e8304766b9b0eba"
+                "url": "https://github.com/webignition/basil-models.git",
+                "reference": "9491af7d4e9a332e5043797ce3107f02e5be16fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/php-dom-element-identifier/zipball/65b8b076726e0ef769cebd501e8304766b9b0eba",
-                "reference": "65b8b076726e0ef769cebd501e8304766b9b0eba",
+                "url": "https://api.github.com/repos/webignition/basil-models/zipball/9491af7d4e9a332e5043797ce3107f02e5be16fa",
+                "reference": "9491af7d4e9a332e5043797ce3107f02e5be16fa",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.12",
+                "phpunit/phpunit": "~8.0",
+                "squizlabs/php_codesniffer": "3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "webignition\\BasilModels\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Cram",
+                    "email": "webignition@gmail.com"
+                }
+            ],
+            "homepage": "https://github.com/webignition/basil-models",
+            "time": "2020-04-10T10:12:30+00:00"
+        },
+        {
+            "name": "webignition/php-dom-element-identifier",
+            "version": "0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webignition/php-dom-element-identifier.git",
+                "reference": "4765257e44c8958f77434347dee16e1356f287d7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webignition/php-dom-element-identifier/zipball/4765257e44c8958f77434347dee16e1356f287d7",
+                "reference": "4765257e44c8958f77434347dee16e1356f287d7",
                 "shasum": ""
             },
             "require": {
@@ -2356,7 +2398,7 @@
                 }
             ],
             "homepage": "https://github.com/webignition/php-dom-element-identifier",
-            "time": "2020-02-03T11:36:53+00:00"
+            "time": "2020-04-01T17:47:32+00:00"
         },
         {
             "name": "webignition/php-dom-element-locator",
@@ -2761,5 +2803,6 @@
     "platform": {
         "php": ">=7.2"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
