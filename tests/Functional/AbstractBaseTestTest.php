@@ -6,6 +6,7 @@ namespace webignition\BaseBasilTestCase\Tests\Functional;
 
 use PHPUnit\Runner\BaseTestRunner;
 use webignition\BaseBasilTestCase\Statement;
+use webignition\BasilModels\Assertion\Factory\Factory;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyPantherWebServerRunner\Options;
 use webignition\SymfonyPantherWebServerRunner\WebServerRunner;
@@ -161,6 +162,11 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->expectedElementIdentifier = $expectedElementIdentifier;
 
         $this->assertSame($expectedElementIdentifier, $this->expectedElementIdentifier);
+    }
+
+    public function testAssertionFactoryIsInstantiated()
+    {
+        $this->assertInstanceOf(Factory::class, $this->assertionFactory);
     }
 
     protected function tearDown(): void
