@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase\Tests\Functional;
 
 use PHPUnit\Runner\BaseTestRunner;
-use webignition\BaseBasilTestCase\Statement;
 use webignition\BasilModels\Action\Factory\Factory as ActionFactory;
+use webignition\BasilModels\Action\InteractionAction;
+use webignition\BasilModels\Assertion\ComparisonAssertion;
 use webignition\BasilModels\Assertion\Factory\Factory as AssertionFactory;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyPantherWebServerRunner\Options;
@@ -115,9 +116,23 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
     {
         $this->assertSame([], $this->getHandledStatements());
 
-        $this->handledStatements[] = Statement::createAction('click $".selector"');
-        $this->handledStatements[] = Statement::createAssertion('$page.url is "http://example.com"');
-        $this->handledStatements[] = Statement::createAssertion('$page.title is "Page Title"');
+        $this->handledStatements[] = $this->actionFactory->createFromJson(
+            (string) json_encode(new InteractionAction(
+                'click $".selector"',
+                'click',
+                '$".selector"',
+                '$".selector"'
+            ))
+        );
+
+        $this->handledStatements[] = $this->assertionFactory->createFromJson(
+            (string) json_encode(new ComparisonAssertion(
+                '$".selector" is "value"',
+                '$".selector"',
+                'is',
+                '"value"'
+            ))
+        );
 
         $this->assertSame(
             $this->handledStatements,

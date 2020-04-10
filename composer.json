@@ -38,7 +38,7 @@
         "webignition/symfony-panther-dom-crawler-navigator": ">=0.17,<1",
         "webignition/webdriver-element-inspector": ">=0.7,<1",
         "webignition/webdriver-element-mutator": ">=0.3,<1",
-        "webignition/basil-models": ">=0.40,<1"
+        "webignition/basil-models": ">=0.41,<1"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "3.*",

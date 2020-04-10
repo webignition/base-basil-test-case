@@ -18,7 +18,7 @@ interface BasilTestCaseInterface extends Test
     public function getStatus(): int;
 
     /**
-     * @return StatementInterface[]
+     * @return \webignition\BasilModels\StatementInterface[]
      */
     public function getHandledStatements(): array;
 
