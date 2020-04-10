@@ -52,7 +52,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     private $basilStepName;
 
     /**
-     * @var StatementInterface[]
+     * @var \webignition\BasilModels\StatementInterface[]
      */
     protected $handledStatements = [];
 
