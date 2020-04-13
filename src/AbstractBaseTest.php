@@ -9,6 +9,7 @@ use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
 use webignition\BasilModels\Action\Factory\Factory as ActionFactory;
 use webignition\BasilModels\Assertion\Factory\Factory as AssertionFactory;
+use webignition\BasilModels\StatementInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\WebDriverElementInspector\Inspector;
@@ -52,7 +53,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     private $basilStepName;
 
     /**
-     * @var \webignition\BasilModels\StatementInterface[]
+     * @var StatementInterface[]
      */
     protected $handledStatements = [];
 
