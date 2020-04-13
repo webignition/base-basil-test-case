@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase;
 
 use PHPUnit\Framework\Test;
+use webignition\BasilModels\StatementInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 
 interface BasilTestCaseInterface extends Test
@@ -18,7 +19,7 @@ interface BasilTestCaseInterface extends Test
     public function getStatus(): int;
 
     /**
-     * @return \webignition\BasilModels\StatementInterface[]
+     * @return StatementInterface[]
      */
     public function getHandledStatements(): array;
 
