@@ -105,11 +105,21 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     {
         parent::setUp();
 
-        self::$crawler = self::$client->refreshCrawler();
+        $this->refreshCrawlerAndNavigator();
 
-        $this->navigator = Navigator::create(self::$crawler);
         $this->actionFactory = ActionFactory::createFactory();
         $this->assertionFactory = AssertionFactory::createFactory();
+    }
+
+    protected function refreshCrawlerAndNavigator(): void
+    {
+        self::$crawler = self::$client->refreshCrawler();
+
+        if (null === $this->navigator) {
+            $this->navigator = Navigator::create(self::$crawler);
+        } else {
+            $this->navigator->setCrawler(self::$crawler);
+        }
     }
 
     public static function setBasilTestPath(string $testPath): void
