@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase\Tests\Functional;
 
 use PHPUnit\Runner\BaseTestRunner;
+use Symfony\Component\Panther\DomCrawler\Crawler;
 use webignition\BasilModels\Action\Factory\Factory as ActionFactory;
 use webignition\BasilModels\Action\InteractionAction;
 use webignition\BasilModels\Assertion\ComparisonAssertion;
 use webignition\BasilModels\Assertion\Factory\Factory as AssertionFactory;
 use webignition\DomElementIdentifier\ElementIdentifier;
+use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\SymfonyPantherWebServerRunner\Options;
 use webignition\SymfonyPantherWebServerRunner\WebServerRunner;
+use webignition\WebDriverElementInspector\Inspector;
+use webignition\WebDriverElementMutator\Mutator;
 
 class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTest
 {
@@ -66,6 +70,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
     public function testCrawlerIsInstantiated()
     {
+        $this->assertInstanceOf(Crawler::class, self::$crawler);
         $h1 = self::$crawler->filter('h1');
 
         $this->assertSame('Test fixture h1 content', $h1->getText());
@@ -73,6 +78,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
     public function testNavigatorIsInstantiated()
     {
+        $this->assertInstanceOf(Navigator::class, $this->navigator);
         $h1 = $this->navigator->findOne(new ElementIdentifier('h1'));
 
         $this->assertSame('Test fixture h1 content', $h1->getText());
@@ -80,6 +86,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
     public function testInspectorInstantiated()
     {
+        $this->assertInstanceOf(Inspector::class, self::$inspector);
         $input = $this->navigator->find(new ElementIdentifier('.input'));
 
         $this->assertSame('initial value', self::$inspector->getValue($input));
@@ -87,6 +94,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
     public function testMutatorInstantiated()
     {
+        $this->assertInstanceOf(Mutator::class, self::$mutator);
         $input = $this->navigator->find(new ElementIdentifier('.input'));
         $this->assertSame('initial value', self::$inspector->getValue($input));
 
