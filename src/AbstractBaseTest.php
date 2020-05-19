@@ -60,12 +60,22 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     /**
      * @var string|null
      */
-    protected $examinedValue;
+    private $examinedValue;
 
     /**
      * @var string|null
      */
-    protected $expectedValue;
+    private $expectedValue;
+
+    /**
+     * @var bool|null
+     */
+    private $booleanExaminedValue;
+
+    /**
+     * @var bool|null
+     */
+    private $booleanExpectedValue;
 
     /**
      * @var ElementIdentifierInterface|null
@@ -147,14 +157,44 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->handledStatements;
     }
 
-    public function getExaminedValue()
+    public function setExaminedValue(string $examinedValue): void
+    {
+        $this->examinedValue = $examinedValue;
+    }
+
+    public function getExaminedValue(): ?string
     {
         return $this->examinedValue;
+    }
+
+    public function setExpectedValue(string $expectedValue): void
+    {
+        $this->expectedValue = $expectedValue;
     }
 
     public function getExpectedValue(): ?string
     {
         return $this->expectedValue;
+    }
+
+    public function setBooleanExaminedValue(bool $examinedValue): void
+    {
+        $this->booleanExaminedValue = $examinedValue;
+    }
+
+    public function getBooleanExaminedValue(): ?bool
+    {
+        return $this->booleanExaminedValue;
+    }
+
+    public function setBooleanExpectedValue(bool $expectedValue): void
+    {
+        $this->booleanExpectedValue = $expectedValue;
+    }
+
+    public function getBooleanExpectedValue(): ?bool
+    {
+        return $this->booleanExpectedValue;
     }
 
     public function getExaminedElementIdentifier(): ?ElementIdentifierInterface
