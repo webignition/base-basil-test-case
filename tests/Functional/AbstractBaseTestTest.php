@@ -153,9 +153,9 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->assertNull($this->getExaminedValue());
 
         $examinedValue = 'examined value';
-        $this->examinedValue = $examinedValue;
+        $this->setExaminedValue($examinedValue);
 
-        $this->assertSame($examinedValue, $this->examinedValue);
+        $this->assertSame($examinedValue, $this->getExaminedValue());
     }
 
     public function testExpectedValue()
@@ -163,9 +163,9 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->assertNull($this->getExpectedValue());
 
         $expectedValue = 'expected value';
-        $this->expectedValue = $expectedValue;
+        $this->setExpectedValue($expectedValue);
 
-        $this->assertSame($expectedValue, $this->expectedValue);
+        $this->assertSame($expectedValue, $this->getExpectedValue());
     }
 
     public function testExaminedElementIdentifier()

@@ -23,10 +23,10 @@ interface BasilTestCaseInterface extends Test
      */
     public function getHandledStatements(): array;
 
-    /**
-     * @return mixed|null
-     */
-    public function getExaminedValue();
+    public function setExaminedValue(string $examinedValue): void;
+    public function setExpectedValue(string $expectedValue): void;
+
+    public function getExaminedValue(): ?string;
     public function getExpectedValue(): ?string;
 
     public function getExaminedElementIdentifier(): ?ElementIdentifierInterface;

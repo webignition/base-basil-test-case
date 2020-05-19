@@ -60,12 +60,12 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     /**
      * @var string|null
      */
-    protected $examinedValue;
+    private $examinedValue;
 
     /**
      * @var string|null
      */
-    protected $expectedValue;
+    private $expectedValue;
 
     /**
      * @var ElementIdentifierInterface|null
@@ -147,7 +147,17 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->handledStatements;
     }
 
-    public function getExaminedValue()
+    public function setExaminedValue(string $examinedValue): void
+    {
+        $this->examinedValue = $examinedValue;
+    }
+
+    public function setExpectedValue(string $expectedValue): void
+    {
+        $this->expectedValue = $expectedValue;
+    }
+
+    public function getExaminedValue(): ?string
     {
         return $this->examinedValue;
     }
