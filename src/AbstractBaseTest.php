@@ -157,7 +157,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->handledStatements;
     }
 
-    public function setExaminedValue(string $examinedValue): void
+    public function setExaminedValue(?string $examinedValue): void
     {
         $this->examinedValue = $examinedValue;
     }
@@ -167,7 +167,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->examinedValue;
     }
 
-    public function setExpectedValue(string $expectedValue): void
+    public function setExpectedValue(?string $expectedValue): void
     {
         $this->expectedValue = $expectedValue;
     }
