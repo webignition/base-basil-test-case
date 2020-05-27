@@ -22,20 +22,9 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
     private const FIXTURES_RELATIVE_PATH = '/Fixtures';
     private const FIXTURES_HTML_RELATIVE_PATH = '/html';
 
-    /**
-     * @var WebServerRunner
-     */
-    private static $webServerRunner;
-
-    /**
-     * @var string|null
-     */
-    protected static $webServerDir;
-
-    /**
-     * @var string|null
-     */
-    protected static $baseUri;
+    private static WebServerRunner $webServerRunner;
+    protected static ?string $webServerDir;
+    protected static ?string $baseUri = '';
 
     public static function setUpBeforeClass(): void
     {
