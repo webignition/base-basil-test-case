@@ -17,85 +17,27 @@ use webignition\WebDriverElementMutator\Mutator;
 
 abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterface
 {
-    /**
-     * @var Navigator
-     */
-    protected $navigator;
-
-    /**
-     * @var Inspector
-     */
-    protected static $inspector;
-
-    /**
-     * @var Mutator
-     */
-    protected static $mutator;
-
-    /**
-     * @var Client
-     */
-    protected static $client;
-
-    /**
-     * @var Crawler
-     */
-    protected static $crawler;
-
-    /**
-     * @var string
-     */
-    private static $basilTestPath;
-
-    /**
-     * @var string
-     */
-    private $basilStepName;
+    protected Navigator $navigator;
+    protected static Inspector $inspector;
+    protected static Mutator $mutator;
+    protected static Client $client;
+    protected static Crawler $crawler;
+    private static string $basilTestPath;
+    private string $basilStepName;
 
     /**
      * @var StatementInterface[]
      */
-    protected $handledStatements = [];
+    protected array $handledStatements = [];
 
-    /**
-     * @var string|null
-     */
-    private $examinedValue;
-
-    /**
-     * @var string|null
-     */
-    private $expectedValue;
-
-    /**
-     * @var bool|null
-     */
-    private $booleanExaminedValue;
-
-    /**
-     * @var bool|null
-     */
-    private $booleanExpectedValue;
-
-    /**
-     * @var ElementIdentifierInterface|null
-     */
-    protected $examinedElementIdentifier;
-
-    /**
-     * @var ElementIdentifierInterface|null
-     */
-    protected $expectedElementIdentifier;
-
-    /**
-     * @var ActionFactory
-     */
-    protected $actionFactory;
-
-    /**
-     * @var AssertionFactory
-     */
-    protected $assertionFactory;
+    private ?string $examinedValue = null;
+    private ?string $expectedValue = null;
+    private ?bool $booleanExaminedValue = null;
+    private ?bool $booleanExpectedValue = null;
+    protected ?ElementIdentifierInterface $examinedElementIdentifier = null;
+    protected ?ElementIdentifierInterface $expectedElementIdentifier = null;
+    protected ActionFactory $actionFactory;
+    protected AssertionFactory $assertionFactory;
 
     public static function setUpBeforeClass(): void
     {
@@ -124,12 +66,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected function refreshCrawlerAndNavigator(): void
     {
         self::$crawler = self::$client->refreshCrawler();
-
-        if (null === $this->navigator) {
-            $this->navigator = Navigator::create(self::$crawler);
-        } else {
-            $this->navigator->setCrawler(self::$crawler);
-        }
+        $this->navigator = Navigator::create(self::$crawler);
     }
 
     public static function setBasilTestPath(string $testPath): void
