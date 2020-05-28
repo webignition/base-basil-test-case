@@ -6,10 +6,10 @@ namespace webignition\BaseBasilTestCase\Tests\Functional;
 
 use PHPUnit\Runner\BaseTestRunner;
 use Symfony\Component\Panther\DomCrawler\Crawler;
-use webignition\BasilModels\Action\Factory\Factory as ActionFactory;
-use webignition\BasilModels\Action\InteractionAction;
-use webignition\BasilModels\Assertion\ComparisonAssertion;
-use webignition\BasilModels\Assertion\Factory\Factory as AssertionFactory;
+use webignition\BasilModels\Action\Action;
+use webignition\BasilModels\Action\Factory as ActionFactory;
+use webignition\BasilModels\Assertion\Assertion;
+use webignition\BasilModels\Assertion\Factory as AssertionFactory;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\SymfonyPantherWebServerRunner\Options;
@@ -114,7 +114,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $this->assertSame([], $this->getHandledStatements());
 
         $this->handledStatements[] = $this->actionFactory->createFromJson(
-            (string) json_encode(new InteractionAction(
+            (string) json_encode(new Action(
                 'click $".selector"',
                 'click',
                 '$".selector"',
@@ -123,7 +123,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         );
 
         $this->handledStatements[] = $this->assertionFactory->createFromJson(
-            (string) json_encode(new ComparisonAssertion(
+            (string) json_encode(new Assertion(
                 '$".selector" is "value"',
                 '$".selector"',
                 'is',
