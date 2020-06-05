@@ -37,4 +37,6 @@ interface BasilTestCaseInterface extends Test
 
     public function getExaminedElementIdentifier(): ?ElementIdentifierInterface;
     public function getExpectedElementIdentifier(): ?ElementIdentifierInterface;
+
+    public function getLastException(): ?\Throwable;
 }

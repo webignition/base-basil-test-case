@@ -38,6 +38,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected ?ElementIdentifierInterface $expectedElementIdentifier = null;
     protected ActionFactory $actionFactory;
     protected AssertionFactory $assertionFactory;
+    private ?\Throwable $lastException = null;
 
     public static function setUpBeforeClass(): void
     {
@@ -142,5 +143,15 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public function getExpectedElementIdentifier(): ?ElementIdentifierInterface
     {
         return $this->expectedElementIdentifier;
+    }
+
+    public function setLastException(\Throwable $exception): void
+    {
+        $this->lastException = $exception;
+    }
+
+    public function getLastException(): ?\Throwable
+    {
+        return $this->lastException;
     }
 }
