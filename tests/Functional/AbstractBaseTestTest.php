@@ -202,6 +202,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         $this->assertSame($expectedElementIdentifier, $this->expectedElementIdentifier);
     }
+
     public function testActionFactoryIsInstantiated()
     {
         $this->assertInstanceOf(ActionFactory::class, $this->actionFactory);
@@ -210,6 +211,16 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
     public function testAssertionFactoryIsInstantiated()
     {
         $this->assertInstanceOf(AssertionFactory::class, $this->assertionFactory);
+    }
+
+    public function testLastException()
+    {
+        $this->assertNull($this->getLastException());
+
+        $exception = new \Exception();
+
+        $this->setLastException($exception);
+        $this->assertSame($exception, $this->getLastException());
     }
 
     protected function tearDown(): void
