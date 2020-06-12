@@ -41,6 +41,6 @@ interface BasilTestCaseInterface extends Test
 
     public function getLastException(): ?\Throwable;
 
-    public function setCurrentDataSet(DataSetInterface $dataSet): void;
+    public function setCurrentDataSet(?DataSetInterface $dataSet): void;
     public function getCurrentDataSet(): ?DataSetInterface;
 }

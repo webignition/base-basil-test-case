@@ -157,7 +157,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->lastException;
     }
 
-    public function setCurrentDataSet(DataSetInterface $dataSet): void
+    public function setCurrentDataSet(?DataSetInterface $dataSet): void
     {
         $this->currentDataSet = $dataSet;
     }
