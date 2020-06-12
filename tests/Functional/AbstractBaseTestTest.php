@@ -232,6 +232,9 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         $this->setCurrentDataSet($dataSet);
         $this->assertSame($dataSet, $this->getCurrentDataSet());
+
+        $this->setCurrentDataSet(null);
+        $this->assertNull($this->getCurrentDataSet());
     }
 
     protected function tearDown(): void
