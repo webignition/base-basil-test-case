@@ -10,6 +10,7 @@ use webignition\BasilModels\Action\Action;
 use webignition\BasilModels\Action\Factory as ActionFactory;
 use webignition\BasilModels\Assertion\Assertion;
 use webignition\BasilModels\Assertion\Factory as AssertionFactory;
+use webignition\BasilModels\DataSet\DataSet;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\SymfonyPantherWebServerRunner\Options;
@@ -221,6 +222,16 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         $this->setLastException($exception);
         $this->assertSame($exception, $this->getLastException());
+    }
+
+    public function testCurrentDataSet()
+    {
+        $this->assertNull($this->getCurrentDataSet());
+
+        $dataSet = new DataSet('name', []);
+
+        $this->setCurrentDataSet($dataSet);
+        $this->assertSame($dataSet, $this->getCurrentDataSet());
     }
 
     protected function tearDown(): void

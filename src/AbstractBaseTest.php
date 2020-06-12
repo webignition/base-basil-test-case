@@ -9,6 +9,7 @@ use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
 use webignition\BasilModels\Action\Factory as ActionFactory;
 use webignition\BasilModels\Assertion\Factory as AssertionFactory;
+use webignition\BasilModels\DataSet\DataSetInterface;
 use webignition\BasilModels\StatementInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
@@ -39,6 +40,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected ActionFactory $actionFactory;
     protected AssertionFactory $assertionFactory;
     private ?\Throwable $lastException = null;
+    private ?DataSetInterface $currentDataSet = null;
 
     public static function setUpBeforeClass(): void
     {
@@ -153,5 +155,15 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public function getLastException(): ?\Throwable
     {
         return $this->lastException;
+    }
+
+    public function setCurrentDataSet(DataSetInterface $dataSet): void
+    {
+        $this->currentDataSet = $dataSet;
+    }
+
+    public function getCurrentDataSet(): ?DataSetInterface
+    {
+        return $this->currentDataSet;
     }
 }

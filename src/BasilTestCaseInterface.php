@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase;
 
 use PHPUnit\Framework\Test;
+use webignition\BasilModels\DataSet\DataSetInterface;
 use webignition\BasilModels\StatementInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 
@@ -39,4 +40,7 @@ interface BasilTestCaseInterface extends Test
     public function getExpectedElementIdentifier(): ?ElementIdentifierInterface;
 
     public function getLastException(): ?\Throwable;
+
+    public function setCurrentDataSet(DataSetInterface $dataSet): void;
+    public function getCurrentDataSet(): ?DataSetInterface;
 }

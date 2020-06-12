@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fdb3d71c2e61c974a236f3578651c5b7",
+    "content-hash": "67e83925329bb472eded02312f7873c0",
     "packages": [
         {
             "name": "doctrine/instantiator",
@@ -2521,16 +2521,16 @@
         },
         {
             "name": "webignition/basil-models",
-            "version": "0.47",
+            "version": "0.54",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webignition/basil-models.git",
-                "reference": "503008bfa1b0775ccbbf3d6ebd5998def4fdfef0"
+                "reference": "26b17de48a7daa4badd29d4af1ef1966b12019f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webignition/basil-models/zipball/503008bfa1b0775ccbbf3d6ebd5998def4fdfef0",
-                "reference": "503008bfa1b0775ccbbf3d6ebd5998def4fdfef0",
+                "url": "https://api.github.com/repos/webignition/basil-models/zipball/26b17de48a7daa4badd29d4af1ef1966b12019f0",
+                "reference": "26b17de48a7daa4badd29d4af1ef1966b12019f0",
                 "shasum": ""
             },
             "require": {
@@ -2540,7 +2540,8 @@
             "require-dev": {
                 "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": "~9.0",
-                "squizlabs/php_codesniffer": "3.*"
+                "squizlabs/php_codesniffer": "3.*",
+                "webignition/object-reflector": "^0.1.0"
             },
             "type": "library",
             "autoload": {
@@ -2559,7 +2560,7 @@
                 }
             ],
             "homepage": "https://github.com/webignition/basil-models",
-            "time": "2020-05-22T16:33:15+00:00"
+            "time": "2020-06-12T13:27:31+00:00"
         },
         {
             "name": "webignition/php-dom-element-identifier",
