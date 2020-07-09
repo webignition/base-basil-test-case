@@ -222,6 +222,9 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         $this->setLastException($exception);
         $this->assertSame($exception, $this->getLastException());
+
+        $this->clearLastException();
+        $this->assertNull($this->getLastException());
     }
 
     public function testCurrentDataSet()
@@ -235,6 +238,17 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         $this->setCurrentDataSet(null);
         $this->assertNull($this->getCurrentDataSet());
+    }
+
+    public function testGetStatus()
+    {
+        $this->assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
+
+        $this->setLastException(new \Exception());
+        $this->assertSame(BaseTestRunner::STATUS_FAILURE, $this->getStatus());
+
+        $this->clearLastException();
+        $this->assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
     }
 
     protected function tearDown(): void

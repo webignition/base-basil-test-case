@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Runner\BaseTestRunner;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
 use webignition\BasilModels\Action\Factory as ActionFactory;
@@ -157,6 +158,11 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->lastException;
     }
 
+    public function clearLastException(): void
+    {
+        $this->lastException = null;
+    }
+
     public function setCurrentDataSet(?DataSetInterface $dataSet): void
     {
         $this->currentDataSet = $dataSet;
@@ -165,5 +171,14 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public function getCurrentDataSet(): ?DataSetInterface
     {
         return $this->currentDataSet;
+    }
+
+    public function getStatus(): int
+    {
+        if ($this->lastException instanceof \Throwable) {
+            return BaseTestRunner::STATUS_FAILURE;
+        }
+
+        return parent::getStatus();
     }
 }
