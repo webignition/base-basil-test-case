@@ -55,41 +55,41 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
     {
         self::$client->request('GET', 'http://127.0.0.1:9080/index.html');
 
-        $this->assertSame('Test fixture title', self::$client->getTitle());
+        self::assertSame('Test fixture title', self::$client->getTitle());
     }
 
     public function testCrawlerIsInstantiated()
     {
-        $this->assertInstanceOf(Crawler::class, self::$crawler);
+        self::assertInstanceOf(Crawler::class, self::$crawler);
         $h1 = self::$crawler->filter('h1');
 
-        $this->assertSame('Test fixture h1 content', $h1->getText());
+        self::assertSame('Test fixture h1 content', $h1->getText());
     }
 
     public function testNavigatorIsInstantiated()
     {
-        $this->assertInstanceOf(Navigator::class, $this->navigator);
+        self::assertInstanceOf(Navigator::class, $this->navigator);
         $h1 = $this->navigator->findOne(new ElementIdentifier('h1'));
 
-        $this->assertSame('Test fixture h1 content', $h1->getText());
+        self::assertSame('Test fixture h1 content', $h1->getText());
     }
 
     public function testInspectorInstantiated()
     {
-        $this->assertInstanceOf(Inspector::class, self::$inspector);
+        self::assertInstanceOf(Inspector::class, self::$inspector);
         $input = $this->navigator->find(new ElementIdentifier('.input'));
 
-        $this->assertSame('initial value', self::$inspector->getValue($input));
+        self::assertSame('initial value', self::$inspector->getValue($input));
     }
 
     public function testMutatorInstantiated()
     {
-        $this->assertInstanceOf(Mutator::class, self::$mutator);
+        self::assertInstanceOf(Mutator::class, self::$mutator);
         $input = $this->navigator->find(new ElementIdentifier('.input'));
-        $this->assertSame('initial value', self::$inspector->getValue($input));
+        self::assertSame('initial value', self::$inspector->getValue($input));
 
         self::$mutator->setValue($input, 'new value');
-        $this->assertSame('new value', self::$inspector->getValue($input));
+        self::assertSame('new value', self::$inspector->getValue($input));
     }
 
     public function testBasilTestPath()
@@ -98,7 +98,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         self::setBasilTestPath($basilTestPath);
 
-        $this->assertSame($basilTestPath, self::getBasilTestPath());
+        self::assertSame($basilTestPath, self::getBasilTestPath());
     }
 
     public function testBasilStepName()
@@ -107,12 +107,12 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         $this->setBasilStepName($stepName);
 
-        $this->assertSame($stepName, $this->getBasilStepName());
+        self::assertSame($stepName, $this->getBasilStepName());
     }
 
     public function testHandledStatements()
     {
-        $this->assertSame([], $this->getHandledStatements());
+        self::assertSame([], $this->getHandledStatements());
 
         $this->handledStatements[] = $this->actionFactory->createFromJson(
             (string) json_encode(new Action(
@@ -132,7 +132,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
             ))
         );
 
-        $this->assertSame(
+        self::assertSame(
             $this->handledStatements,
             $this->getHandledStatements()
         );
@@ -140,122 +140,122 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
     public function testExaminedValue()
     {
-        $this->assertNull($this->getExaminedValue());
+        self::assertNull($this->getExaminedValue());
 
         $examinedValue = 'examined value';
         $this->setExaminedValue($examinedValue);
 
-        $this->assertSame($examinedValue, $this->getExaminedValue());
+        self::assertSame($examinedValue, $this->getExaminedValue());
 
         $this->setExaminedValue(null);
-        $this->assertNull($this->getExaminedValue());
+        self::assertNull($this->getExaminedValue());
     }
 
     public function testExpectedValue()
     {
-        $this->assertNull($this->getExpectedValue());
+        self::assertNull($this->getExpectedValue());
 
         $expectedValue = 'expected value';
         $this->setExpectedValue($expectedValue);
 
-        $this->assertSame($expectedValue, $this->getExpectedValue());
+        self::assertSame($expectedValue, $this->getExpectedValue());
 
         $this->setExpectedValue(null);
-        $this->assertNull($this->getExpectedValue());
+        self::assertNull($this->getExpectedValue());
     }
 
     public function testBooleanExaminedValue()
     {
-        $this->assertNull($this->getBooleanExaminedValue());
+        self::assertNull($this->getBooleanExaminedValue());
 
         $examinedValue = false;
         $this->setBooleanExaminedValue($examinedValue);
 
-        $this->assertSame($examinedValue, $this->getBooleanExaminedValue());
+        self::assertSame($examinedValue, $this->getBooleanExaminedValue());
     }
 
     public function testBooleanExpectedValue()
     {
-        $this->assertNull($this->getBooleanExpectedValue());
+        self::assertNull($this->getBooleanExpectedValue());
 
         $expectedValue = false;
         $this->setBooleanExpectedValue($expectedValue);
 
-        $this->assertSame($expectedValue, $this->getBooleanExpectedValue());
+        self::assertSame($expectedValue, $this->getBooleanExpectedValue());
     }
 
     public function testExaminedElementIdentifier()
     {
-        $this->assertNull($this->getExaminedElementIdentifier());
+        self::assertNull($this->getExaminedElementIdentifier());
 
         $examinedElementIdentifier = new ElementIdentifier('.selector');
         $this->examinedElementIdentifier = $examinedElementIdentifier;
 
-        $this->assertSame($examinedElementIdentifier, $this->examinedElementIdentifier);
+        self::assertSame($examinedElementIdentifier, $this->examinedElementIdentifier);
     }
 
     public function testExpectedElementIdentifier()
     {
-        $this->assertNull($this->getExpectedElementIdentifier());
+        self::assertNull($this->getExpectedElementIdentifier());
 
         $expectedElementIdentifier = new ElementIdentifier('.selector');
         $this->expectedElementIdentifier = $expectedElementIdentifier;
 
-        $this->assertSame($expectedElementIdentifier, $this->expectedElementIdentifier);
+        self::assertSame($expectedElementIdentifier, $this->expectedElementIdentifier);
     }
 
     public function testActionFactoryIsInstantiated()
     {
-        $this->assertInstanceOf(ActionFactory::class, $this->actionFactory);
+        self::assertInstanceOf(ActionFactory::class, $this->actionFactory);
     }
 
     public function testAssertionFactoryIsInstantiated()
     {
-        $this->assertInstanceOf(AssertionFactory::class, $this->assertionFactory);
+        self::assertInstanceOf(AssertionFactory::class, $this->assertionFactory);
     }
 
     public function testLastException()
     {
-        $this->assertNull($this->getLastException());
+        self::assertNull($this->getLastException());
 
         $exception = new \Exception();
 
         $this->setLastException($exception);
-        $this->assertSame($exception, $this->getLastException());
+        self::assertSame($exception, $this->getLastException());
 
         $this->clearLastException();
-        $this->assertNull($this->getLastException());
+        self::assertNull($this->getLastException());
     }
 
     public function testCurrentDataSet()
     {
-        $this->assertNull($this->getCurrentDataSet());
+        self::assertNull($this->getCurrentDataSet());
 
         $dataSet = new DataSet('name', []);
 
         $this->setCurrentDataSet($dataSet);
-        $this->assertSame($dataSet, $this->getCurrentDataSet());
+        self::assertSame($dataSet, $this->getCurrentDataSet());
 
         $this->setCurrentDataSet(null);
-        $this->assertNull($this->getCurrentDataSet());
+        self::assertNull($this->getCurrentDataSet());
     }
 
     public function testGetStatus()
     {
-        $this->assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
+        self::assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
 
         $this->setLastException(new \Exception());
-        $this->assertSame(BaseTestRunner::STATUS_FAILURE, $this->getStatus());
+        self::assertSame(BaseTestRunner::STATUS_FAILURE, $this->getStatus());
 
         $this->clearLastException();
-        $this->assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
+        self::assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
     }
 
     protected function tearDown(): void
     {
         parent::tearDown();
 
-        $this->assertSame(BaseTestRunner::STATUS_PASSED, $this->getStatus());
+        self::assertSame(BaseTestRunner::STATUS_PASSED, $this->getStatus());
     }
 
     private static function stopWebServer(): void
