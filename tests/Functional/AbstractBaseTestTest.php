@@ -29,6 +29,8 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
     public static function setUpBeforeClass(): void
     {
+        self::setUpClient(self::BROWSER_CHROME);
+
         if (null === self::$baseUri) {
             self::$baseUri = Options::getBaseUri();
         }

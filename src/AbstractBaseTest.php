@@ -19,6 +19,9 @@ use webignition\WebDriverElementMutator\Mutator;
 
 abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterface
 {
+    public const BROWSER_CHROME = 0;
+    public const BROWSER_FIREFOX = 1;
+
     protected Navigator $navigator;
     protected static Inspector $inspector;
     protected static Mutator $mutator;
@@ -45,11 +48,19 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
 
     public static function setUpBeforeClass(): void
     {
-        self::$client = Client::createChromeClient();
-        self::$client->start();
-
         self::$inspector = Inspector::create();
         self::$mutator = Mutator::create();
+    }
+
+    public static function setUpClient(int $clientId): void
+    {
+        if (self::BROWSER_FIREFOX === $clientId) {
+            self::$client = Client::createFirefoxClient();
+        } else {
+            self::$client = Client::createChromeClient();
+        }
+
+        self::$client->start();
     }
 
     public static function tearDownAfterClass(): void
