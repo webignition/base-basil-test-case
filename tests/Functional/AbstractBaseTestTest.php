@@ -11,6 +11,7 @@ use webignition\BasilModels\Action\Factory as ActionFactory;
 use webignition\BasilModels\Assertion\Assertion;
 use webignition\BasilModels\Assertion\Factory as AssertionFactory;
 use webignition\BasilModels\DataSet\DataSet;
+use webignition\BasilModels\Test\Configuration;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\SymfonyPantherWebServerRunner\Options;
@@ -29,7 +30,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
     public static function setUpBeforeClass(): void
     {
-        self::setUpClient(self::BROWSER_CHROME);
+        self::setBasilTestConfiguration(new Configuration('chrome', 'http://example.com'));
 
         if (null === self::$baseUri) {
             self::$baseUri = Options::getBaseUri();
@@ -251,6 +252,14 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         $this->clearLastException();
         self::assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
+    }
+
+    public function testGetBasilTestConfiguration()
+    {
+        $this->assertEquals(
+            new Configuration('chrome', 'http://example.com'),
+            self::getBasilTestConfiguration()
+        );
     }
 
     protected function tearDown(): void

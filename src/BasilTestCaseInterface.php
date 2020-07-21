@@ -7,6 +7,7 @@ namespace webignition\BaseBasilTestCase;
 use PHPUnit\Framework\Test;
 use webignition\BasilModels\DataSet\DataSetInterface;
 use webignition\BasilModels\StatementInterface;
+use webignition\BasilModels\Test\ConfigurationInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 
 interface BasilTestCaseInterface extends Test
@@ -43,4 +44,7 @@ interface BasilTestCaseInterface extends Test
 
     public function setCurrentDataSet(?DataSetInterface $dataSet): void;
     public function getCurrentDataSet(): ?DataSetInterface;
+
+    public static function setBasilTestConfiguration(ConfigurationInterface $configuration): void;
+    public static function getBasilTestConfiguration(): ?ConfigurationInterface;
 }
