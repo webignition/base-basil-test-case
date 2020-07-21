@@ -12,6 +12,7 @@ use webignition\BasilModels\Action\Factory as ActionFactory;
 use webignition\BasilModels\Assertion\Factory as AssertionFactory;
 use webignition\BasilModels\DataSet\DataSetInterface;
 use webignition\BasilModels\StatementInterface;
+use webignition\BasilModels\Test\ConfigurationInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\WebDriverElementInspector\Inspector;
@@ -21,6 +22,13 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
 {
     public const BROWSER_CHROME = 0;
     public const BROWSER_FIREFOX = 1;
+    private const LABEL_CHROME = 'chrome';
+    private const LABEL_FIREFOX = 'firefox';
+
+    private const CLIENT_ID_MAP = [
+        self::LABEL_FIREFOX => self::BROWSER_FIREFOX,
+        self::LABEL_CHROME => self::BROWSER_CHROME,
+    ];
 
     protected Navigator $navigator;
     protected static Inspector $inspector;
@@ -45,15 +53,20 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected AssertionFactory $assertionFactory;
     private ?\Throwable $lastException = null;
     private ?DataSetInterface $currentDataSet = null;
+    private static ?ConfigurationInterface $basilTestConfiguration = null;
 
     public static function setUpBeforeClass(): void
     {
         self::$inspector = Inspector::create();
         self::$mutator = Mutator::create();
-    }
 
-    public static function setUpClient(int $clientId): void
-    {
+        if (null === self::$basilTestConfiguration) {
+            throw new \RuntimeException('Call self::setBasilTestConfiguration() first');
+        }
+
+        $browserLabel = self::$basilTestConfiguration->getBrowser();
+        $clientId = self::CLIENT_ID_MAP[$browserLabel] ?? self::BROWSER_CHROME;
+
         if (self::BROWSER_FIREFOX === $clientId) {
             self::$client = Client::createFirefoxClient();
         } else {
@@ -191,5 +204,15 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         }
 
         return parent::getStatus();
+    }
+
+    public static function setBasilTestConfiguration(ConfigurationInterface $configuration): void
+    {
+        self::$basilTestConfiguration = $configuration;
+    }
+
+    public static function getBasilTestConfiguration(): ?ConfigurationInterface
+    {
+        return self::$basilTestConfiguration;
     }
 }
