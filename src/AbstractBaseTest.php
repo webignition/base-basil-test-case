@@ -51,7 +51,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected ?ElementIdentifierInterface $expectedElementIdentifier = null;
     protected ActionFactory $actionFactory;
     protected AssertionFactory $assertionFactory;
-    private ?\Throwable $lastException = null;
+    private static ?\Throwable $lastException = null;
     private ?DataSetInterface $currentDataSet = null;
     private static ?ConfigurationInterface $basilTestConfiguration = null;
 
@@ -172,19 +172,19 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->expectedElementIdentifier;
     }
 
-    public function setLastException(\Throwable $exception): void
+    public static function setLastException(\Throwable $exception): void
     {
-        $this->lastException = $exception;
+        self::$lastException = $exception;
     }
 
-    public function getLastException(): ?\Throwable
+    public static function getLastException(): ?\Throwable
     {
-        return $this->lastException;
+        return self::$lastException;
     }
 
     public function clearLastException(): void
     {
-        $this->lastException = null;
+        self::$lastException = null;
     }
 
     public function setCurrentDataSet(?DataSetInterface $dataSet): void
@@ -199,11 +199,9 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
 
     public function getStatus(): int
     {
-        if ($this->lastException instanceof \Throwable) {
-            return BaseTestRunner::STATUS_FAILURE;
-        }
-
-        return parent::getStatus();
+        return self::$lastException instanceof \Throwable
+            ? BaseTestRunner::STATUS_FAILURE
+            : parent::getStatus();
     }
 
     public static function setBasilTestConfiguration(ConfigurationInterface $configuration): void
