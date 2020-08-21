@@ -40,7 +40,7 @@ interface BasilTestCaseInterface extends Test
     public function getExaminedElementIdentifier(): ?ElementIdentifierInterface;
     public function getExpectedElementIdentifier(): ?ElementIdentifierInterface;
 
-    public function getLastException(): ?\Throwable;
+    public static function getLastException(): ?\Throwable;
 
     public function setCurrentDataSet(?DataSetInterface $dataSet): void;
     public function getCurrentDataSet(): ?DataSetInterface;
