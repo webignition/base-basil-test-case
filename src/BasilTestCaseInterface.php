@@ -45,6 +45,6 @@ interface BasilTestCaseInterface extends Test
     public function setCurrentDataSet(?DataSetInterface $dataSet): void;
     public function getCurrentDataSet(): ?DataSetInterface;
 
-    public static function setBasilTestConfiguration(ConfigurationInterface $configuration): void;
     public static function getBasilTestConfiguration(): ?ConfigurationInterface;
+    public static function setClientManager(ClientManager $clientManager): void;
 }
