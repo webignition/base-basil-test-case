@@ -17,10 +17,23 @@ use webignition\ObjectReflector\ObjectReflector;
 
 class ClientManagerTest extends TestCase
 {
+    public function testCreateFireFoxClient()
+    {
+        $configuration = new Configuration('firefox', 'http://example.com');
+
+        $clientManager = new ClientManager($configuration);
+        self::assertSame($configuration, $clientManager->getConfiguration());
+        self::assertNull($clientManager->getLastException());
+
+        $client = $clientManager->getClient();
+        self::assertInstanceOf(Client::class, $client);
+        self::assertInstanceOf(FirefoxManager::class, $client->getBrowserManager());
+    }
+
     /**
      * @dataProvider createDataProvider
      */
-    public function testCreate(ConfigurationInterface $configuration, string $expectedBrowserManagerClass)
+    public function testCreateChromeClient(ConfigurationInterface $configuration)
     {
         $clientManager = new ClientManager($configuration);
         self::assertSame($configuration, $clientManager->getConfiguration());
@@ -28,7 +41,7 @@ class ClientManagerTest extends TestCase
 
         $client = $clientManager->getClient();
         self::assertInstanceOf(Client::class, $client);
-        self::assertInstanceOf($expectedBrowserManagerClass, $client->getBrowserManager());
+        self::assertInstanceOf(ChromeManager::class, $client->getBrowserManager());
     }
 
     public function createDataProvider(): array
@@ -36,15 +49,9 @@ class ClientManagerTest extends TestCase
         return [
             'chrome' => [
                 'configuration' => new Configuration('chrome', 'http://example.com'),
-                'expectedBrowserManagerClass' => ChromeManager::class,
-            ],
-            'firefox' => [
-                'configuration' => new Configuration('firefox', 'http://example.com'),
-                'expectedBrowserManagerClass' => FirefoxManager::class,
             ],
             'unknown' => [
                 'configuration' => new Configuration('unknown', 'http://example.com'),
-                'expectedBrowserManagerClass' => ChromeManager::class,
             ],
         ];
     }
@@ -142,7 +149,7 @@ class ClientManagerTest extends TestCase
         int $browserStartState,
         ?\Throwable $expectedLastException,
         int $expectedFailedStartAttemptCount
-    ) {
+    ): void {
         self::assertSame($expectedBrowserStartState, $browserStartState);
         self::assertSame($expectedLastException, $clientManager->getLastException());
         self::assertSame(
