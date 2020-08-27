@@ -227,10 +227,12 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         $exception = new \Exception();
 
         self::setLastException($exception);
-        self::assertSame($exception, self::getLastException());
+        self::assertSame($exception, self::staticGetLastException());
+        self::assertSame($exception, $this->getLastException());
 
         self::clearLastException();
-        self::assertNull(self::getLastException());
+        self::assertNull(self::staticGetLastException());
+        self::assertNull($this->getLastException());
     }
 
     public function testCurrentDataSet()
