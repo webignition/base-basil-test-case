@@ -164,7 +164,12 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         self::$lastException = $exception;
     }
 
-    public static function getLastException(): ?\Throwable
+    public static function staticGetLastException(): ?\Throwable
+    {
+        return self::$lastException;
+    }
+
+    public function getLastException(): ?\Throwable
     {
         return self::$lastException;
     }
