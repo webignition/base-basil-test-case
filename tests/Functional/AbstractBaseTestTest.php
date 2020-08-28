@@ -226,7 +226,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         $exception = new \Exception();
 
-        self::setLastException($exception);
+        self::staticSetLastException($exception);
         self::assertSame($exception, self::staticGetLastException());
         self::assertSame($exception, $this->getLastException());
 

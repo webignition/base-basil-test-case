@@ -159,7 +159,12 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->expectedElementIdentifier;
     }
 
-    public static function setLastException(\Throwable $exception): void
+    public static function staticSetLastException(\Throwable $exception): void
+    {
+        self::$lastException = $exception;
+    }
+
+    public function setLastException(\Throwable $exception): void
     {
         self::$lastException = $exception;
     }
