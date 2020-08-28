@@ -201,7 +201,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
             : parent::getStatus();
     }
 
-    public static function getBasilTestConfiguration(): ?ConfigurationInterface
+    public function getBasilTestConfiguration(): ?ConfigurationInterface
     {
         if (self::$clientManager instanceof ClientManager) {
             return self::$clientManager->getConfiguration();

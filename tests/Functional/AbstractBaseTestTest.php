@@ -13,6 +13,7 @@ use webignition\BasilModels\Assertion\Assertion;
 use webignition\BasilModels\Assertion\Factory as AssertionFactory;
 use webignition\BasilModels\DataSet\DataSet;
 use webignition\BasilModels\Test\Configuration;
+use webignition\BasilModels\Test\ConfigurationInterface;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\SymfonyPantherWebServerRunner\Options;
@@ -29,11 +30,12 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
     protected static ?string $webServerDir;
     protected static ?string $baseUri = '';
 
+    private static ConfigurationInterface $basilTestConfiguration;
+
     public static function setUpBeforeClass(): void
     {
-        self::setClientManager(new ClientManager(
-            new Configuration('chrome', 'http://example.com')
-        ));
+        self::$basilTestConfiguration = new Configuration('chrome', 'http://example.com');
+        self::setClientManager(new ClientManager(self::$basilTestConfiguration));
 
         if (null === self::$baseUri) {
             self::$baseUri = Options::getBaseUri();
@@ -257,6 +259,11 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         $this->clearLastException();
         self::assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
+    }
+
+    public function testGetBasilTestConfiguration()
+    {
+        self::assertSame(self::$basilTestConfiguration, $this->getBasilTestConfiguration());
     }
 
     protected function tearDown(): void
