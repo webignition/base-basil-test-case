@@ -106,7 +106,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         self::setBasilTestPath($basilTestPath);
 
-        self::assertSame($basilTestPath, self::getBasilTestPath());
+        self::assertSame($basilTestPath, $this->getBasilTestPath());
     }
 
     public function testBasilStepName()

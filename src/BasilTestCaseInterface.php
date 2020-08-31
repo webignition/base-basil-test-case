@@ -13,7 +13,7 @@ use webignition\DomElementIdentifier\ElementIdentifierInterface;
 interface BasilTestCaseInterface extends Test
 {
     public static function setBasilTestPath(string $testPath): void;
-    public static function getBasilTestPath(): string;
+    public function getBasilTestPath(): string;
 
     public function setBasilStepName(string $stepName): void;
     public function getBasilStepName(): string;

@@ -94,7 +94,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         $this->basilStepName = $stepName;
     }
 
-    public static function getBasilTestPath(): string
+    public function getBasilTestPath(): string
     {
         return self::$basilTestPath ?? '';
     }
