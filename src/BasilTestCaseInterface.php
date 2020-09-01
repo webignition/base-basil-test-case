@@ -7,14 +7,10 @@ namespace webignition\BaseBasilTestCase;
 use PHPUnit\Framework\Test;
 use webignition\BasilModels\DataSet\DataSetInterface;
 use webignition\BasilModels\StatementInterface;
-use webignition\BasilModels\Test\ConfigurationInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 
 interface BasilTestCaseInterface extends Test
 {
-    public static function setBasilTestPath(string $testPath): void;
-    public function getBasilTestPath(): string;
-
     public function setBasilStepName(string $stepName): void;
     public function getBasilStepName(): string;
 
@@ -48,6 +44,5 @@ interface BasilTestCaseInterface extends Test
     public function setCurrentDataSet(?DataSetInterface $dataSet): void;
     public function getCurrentDataSet(): ?DataSetInterface;
 
-    public function getBasilTestConfiguration(): ?ConfigurationInterface;
     public static function setClientManager(ClientManager $clientManager): void;
 }
