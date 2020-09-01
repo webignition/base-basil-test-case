@@ -100,15 +100,6 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertSame('new value', self::$inspector->getValue($input));
     }
 
-    public function testBasilTestPath()
-    {
-        $basilTestPath = '/path/to/test.yml';
-
-        self::setBasilTestPath($basilTestPath);
-
-        self::assertSame($basilTestPath, $this->getBasilTestPath());
-    }
-
     public function testBasilStepName()
     {
         $stepName = 'step name';
@@ -259,11 +250,6 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         $this->clearLastException();
         self::assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
-    }
-
-    public function testGetBasilTestConfiguration()
-    {
-        self::assertSame(self::$basilTestConfiguration, $this->getBasilTestConfiguration());
     }
 
     protected function tearDown(): void

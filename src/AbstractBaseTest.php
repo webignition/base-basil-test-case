@@ -12,7 +12,6 @@ use webignition\BasilModels\Action\Factory as ActionFactory;
 use webignition\BasilModels\Assertion\Factory as AssertionFactory;
 use webignition\BasilModels\DataSet\DataSetInterface;
 use webignition\BasilModels\StatementInterface;
-use webignition\BasilModels\Test\ConfigurationInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\WebDriverElementInspector\Inspector;
@@ -25,7 +24,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected static Mutator $mutator;
     protected static Client $client;
     protected static Crawler $crawler;
-    private static string $basilTestPath;
     private string $basilStepName;
 
     /**
@@ -84,19 +82,9 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         $this->navigator = Navigator::create(self::$crawler);
     }
 
-    public static function setBasilTestPath(string $testPath): void
-    {
-        self::$basilTestPath = $testPath;
-    }
-
     public function setBasilStepName(string $stepName): void
     {
         $this->basilStepName = $stepName;
-    }
-
-    public function getBasilTestPath(): string
-    {
-        return self::$basilTestPath ?? '';
     }
 
     public function getBasilStepName(): string
@@ -199,15 +187,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return self::$lastException instanceof \Throwable
             ? BaseTestRunner::STATUS_FAILURE
             : parent::getStatus();
-    }
-
-    public function getBasilTestConfiguration(): ?ConfigurationInterface
-    {
-        if (self::$clientManager instanceof ClientManager) {
-            return self::$clientManager->getConfiguration();
-        }
-
-        return null;
     }
 
     public static function setClientManager(ClientManager $clientManager): void
