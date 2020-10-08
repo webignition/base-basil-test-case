@@ -59,14 +59,14 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         static::stopWebServer();
     }
 
-    public function testClientIsInstantiated()
+    public function testClientIsInstantiated(): void
     {
         self::$client->request('GET', 'http://127.0.0.1:9080/index.html');
 
         self::assertSame('Test fixture title', self::$client->getTitle());
     }
 
-    public function testCrawlerIsInstantiated()
+    public function testCrawlerIsInstantiated(): void
     {
         self::assertInstanceOf(Crawler::class, self::$crawler);
         $h1 = self::$crawler->filter('h1');
@@ -74,7 +74,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertSame('Test fixture h1 content', $h1->getText());
     }
 
-    public function testNavigatorIsInstantiated()
+    public function testNavigatorIsInstantiated(): void
     {
         self::assertInstanceOf(Navigator::class, $this->navigator);
         $h1 = $this->navigator->findOne(new ElementIdentifier('h1'));
@@ -82,7 +82,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertSame('Test fixture h1 content', $h1->getText());
     }
 
-    public function testInspectorInstantiated()
+    public function testInspectorInstantiated(): void
     {
         self::assertInstanceOf(Inspector::class, self::$inspector);
         $input = $this->navigator->find(new ElementIdentifier('.input'));
@@ -90,7 +90,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertSame('initial value', self::$inspector->getValue($input));
     }
 
-    public function testMutatorInstantiated()
+    public function testMutatorInstantiated(): void
     {
         self::assertInstanceOf(Mutator::class, self::$mutator);
         $input = $this->navigator->find(new ElementIdentifier('.input'));
@@ -100,7 +100,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertSame('new value', self::$inspector->getValue($input));
     }
 
-    public function testBasilStepName()
+    public function testBasilStepName(): void
     {
         $stepName = 'step name';
 
@@ -109,7 +109,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertSame($stepName, $this->getBasilStepName());
     }
 
-    public function testHandledStatements()
+    public function testHandledStatements(): void
     {
         self::assertSame([], $this->getHandledStatements());
 
@@ -137,7 +137,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         );
     }
 
-    public function testExaminedValue()
+    public function testExaminedValue(): void
     {
         self::assertNull($this->getExaminedValue());
 
@@ -150,7 +150,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertNull($this->getExaminedValue());
     }
 
-    public function testExpectedValue()
+    public function testExpectedValue(): void
     {
         self::assertNull($this->getExpectedValue());
 
@@ -163,7 +163,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertNull($this->getExpectedValue());
     }
 
-    public function testBooleanExaminedValue()
+    public function testBooleanExaminedValue(): void
     {
         self::assertNull($this->getBooleanExaminedValue());
 
@@ -173,7 +173,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertSame($examinedValue, $this->getBooleanExaminedValue());
     }
 
-    public function testBooleanExpectedValue()
+    public function testBooleanExpectedValue(): void
     {
         self::assertNull($this->getBooleanExpectedValue());
 
@@ -183,7 +183,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertSame($expectedValue, $this->getBooleanExpectedValue());
     }
 
-    public function testExaminedElementIdentifier()
+    public function testExaminedElementIdentifier(): void
     {
         self::assertNull($this->getExaminedElementIdentifier());
 
@@ -193,7 +193,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertSame($examinedElementIdentifier, $this->examinedElementIdentifier);
     }
 
-    public function testExpectedElementIdentifier()
+    public function testExpectedElementIdentifier(): void
     {
         self::assertNull($this->getExpectedElementIdentifier());
 
@@ -203,17 +203,17 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertSame($expectedElementIdentifier, $this->expectedElementIdentifier);
     }
 
-    public function testActionFactoryIsInstantiated()
+    public function testActionFactoryIsInstantiated(): void
     {
         self::assertInstanceOf(ActionFactory::class, $this->actionFactory);
     }
 
-    public function testAssertionFactoryIsInstantiated()
+    public function testAssertionFactoryIsInstantiated(): void
     {
         self::assertInstanceOf(AssertionFactory::class, $this->assertionFactory);
     }
 
-    public function testLastException()
+    public function testLastException(): void
     {
         self::assertNull(self::getLastException());
 
@@ -228,7 +228,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertNull($this->getLastException());
     }
 
-    public function testCurrentDataSet()
+    public function testCurrentDataSet(): void
     {
         self::assertNull($this->getCurrentDataSet());
 
@@ -241,7 +241,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         self::assertNull($this->getCurrentDataSet());
     }
 
-    public function testGetStatus()
+    public function testGetStatus(): void
     {
         self::assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
 
