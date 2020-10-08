@@ -57,7 +57,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
 
         if (ClientManager::STATE_FAILED === $browserStartState) {
             self::$lastException = self::$clientManager->getLastException();
-            self::fail('Browser failed to start: ' . self::$lastException->getMessage());
         }
     }
 
@@ -68,6 +67,10 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
 
     protected function setUp(): void
     {
+        if (self::hasException()) {
+            return;
+        }
+
         parent::setUp();
 
         $this->refreshCrawlerAndNavigator();
