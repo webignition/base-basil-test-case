@@ -17,7 +17,7 @@ use webignition\ObjectReflector\ObjectReflector;
 
 class ClientManagerTest extends TestCase
 {
-    public function testCreateFireFoxClient()
+    public function testCreateFireFoxClient(): void
     {
         $configuration = new Configuration('firefox', 'http://example.com');
 
@@ -33,7 +33,7 @@ class ClientManagerTest extends TestCase
     /**
      * @dataProvider createDataProvider
      */
-    public function testCreateChromeClient(ConfigurationInterface $configuration)
+    public function testCreateChromeClient(ConfigurationInterface $configuration): void
     {
         $clientManager = new ClientManager($configuration);
         self::assertSame($configuration, $clientManager->getConfiguration());
@@ -44,6 +44,9 @@ class ClientManagerTest extends TestCase
         self::assertInstanceOf(ChromeManager::class, $client->getBrowserManager());
     }
 
+    /**
+     * @return array<string, array<string, Configuration>>
+     */
     public function createDataProvider(): array
     {
         return [
@@ -65,7 +68,7 @@ class ClientManagerTest extends TestCase
         int $expectedBrowserStartState,
         ?\Throwable $expectedLastException,
         int $expectedFailedStartAttemptCount
-    ) {
+    ): void {
         $configuration = new Configuration('chrome', 'http://example.com');
         $clientManager = new ClientManager($configuration);
 
@@ -107,6 +110,9 @@ class ClientManagerTest extends TestCase
         );
     }
 
+    /**
+     * @return array<string, array<mixed>>
+     */
     public function startDataProvider(): array
     {
         $startFailureException = new \RuntimeException('Could not start chrome (or it crashed) after 30 seconds.');
