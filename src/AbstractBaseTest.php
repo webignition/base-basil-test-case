@@ -193,4 +193,9 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     {
         self::$clientManager = $clientManager;
     }
+
+    public static function hasException(): bool
+    {
+        return self::$lastException instanceof \Throwable;
+    }
 }
