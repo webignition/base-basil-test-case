@@ -22,13 +22,23 @@
         }
     },
     "scripts": {
-        "cs": "./vendor/bin/ecs check --ansi",
-        "static-analysis": "./vendor/bin/phpstan analyse src tests --level=7",
-        "test": "./vendor/bin/phpunit --colors=always",
+        "cs-ecs": "./vendor/bin/ecs check src tests --ansi --no-progress-bar --config ecs.php",
+        "cs-phpcs": "./vendor/bin/phpcs",
+        "cs": [
+            "@cs-ecs",
+            "@cs-phpcs"
+        ],
+        "static-analysis": "./vendor/bin/phpstan analyse --ansi",
+        "test-unit": "./vendor/bin/phpunit --colors=always tests/Unit",
+        "test-functional": "./vendor/bin/phpunit --colors=always tests/Functional",
+        "test": [
+            "@test-unit",
+            "@test-functional"
+        ],
         "ci": [
-            "@composer cs",
-            "@composer static-analysis",
-            "@composer test"
+            "@cs",
+            "@static-analysis",
+            "@test"
         ]
     },
     "require": {
@@ -41,10 +51,10 @@
         "webignition/basil-models": ">=0.54,<1"
     },
     "require-dev": {
-        "squizlabs/php_codesniffer": "3.*",
-        "phpstan/phpstan": "^0.12",
+        "squizlabs/php_codesniffer": "^3.5",
+        "phpstan/phpstan": "^0.12.75",
         "webignition/symfony-panther-webserver-runner": ">=0.3,<1",
-        "symplify/easy-coding-standard": "^8.1",
+        "symplify/easy-coding-standard": "^9.1",
         "mockery/mockery": "^1.4",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan-mockery": "^0.12.7",
