@@ -58,6 +58,7 @@
         "mockery/mockery": "^1.4",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan-mockery": "^0.12.7",
-        "webignition/object-reflector": "^0.2.0"
+        "webignition/object-reflector": "^0.2.0",
+        "dbrekelmans/bdi": "^0.3.0"
     }
 }
