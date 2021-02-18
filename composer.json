@@ -42,9 +42,9 @@
         ]
     },
     "require": {
-        "php": ">=7.4",
+        "php": ">=7.4|^8",
         "symfony/panther": "^1.0",
-        "phpunit/phpunit": "~9.0",
+        "phpunit/phpunit": "^9.5",
         "webignition/symfony-panther-dom-crawler-navigator": ">=0.20,<1",
         "webignition/webdriver-element-inspector": ">=0.8,<1",
         "webignition/webdriver-element-mutator": ">=0.4,<1",
