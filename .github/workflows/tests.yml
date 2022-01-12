@@ -28,6 +28,7 @@ jobs:
         uses: php-actions/composer@v6
         with:
           php_version: ${{ matrix.php }}
+          args: --ignore-platform-req=ext-zip
 
       - name: Install browser drivers
         run: ./vendor/bin/bdi detect drivers
