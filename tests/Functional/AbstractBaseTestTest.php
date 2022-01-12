@@ -56,7 +56,7 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
     {
         parent::tearDownAfterClass();
 
-        static::stopWebServer();
+        self::stopWebServer();
     }
 
     protected function tearDown(): void
