@@ -74,18 +74,20 @@ class ClientManagerTest extends TestCase
 
         $browserManager = \Mockery::mock(BrowserManagerInterface::class);
         $browserManager
-            ->shouldReceive('quit');
+            ->shouldReceive('quit')
+        ;
 
         $webDriver = \Mockery::mock(WebDriver::class);
         $webDriver
-            ->shouldReceive('quit');
+            ->shouldReceive('quit')
+        ;
 
         $browserManager
             ->shouldReceive('start')
             ->andReturnUsing(
                 function () use ($startFailureException, $webDriver, $startSuccessIteration) {
                     static $counter = 0;
-                    $counter++;
+                    ++$counter;
 
                     if ($counter === $startSuccessIteration) {
                         return $webDriver;
@@ -93,7 +95,8 @@ class ClientManagerTest extends TestCase
 
                     throw $startFailureException;
                 }
-            );
+            )
+        ;
 
         $client = new Client($browserManager);
 

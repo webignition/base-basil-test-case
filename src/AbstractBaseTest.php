@@ -24,21 +24,21 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected static Mutator $mutator;
     protected static Client $client;
     protected static Crawler $crawler;
-    private string $basilStepName;
 
     /**
      * @var StatementInterface[]
      */
     protected array $handledStatements = [];
+    protected ?ElementIdentifierInterface $examinedElementIdentifier = null;
+    protected ?ElementIdentifierInterface $expectedElementIdentifier = null;
+    protected ActionFactory $actionFactory;
+    protected AssertionFactory $assertionFactory;
+    private string $basilStepName;
 
     private ?string $examinedValue = null;
     private ?string $expectedValue = null;
     private ?bool $booleanExaminedValue = null;
     private ?bool $booleanExpectedValue = null;
-    protected ?ElementIdentifierInterface $examinedElementIdentifier = null;
-    protected ?ElementIdentifierInterface $expectedElementIdentifier = null;
-    protected ActionFactory $actionFactory;
-    protected AssertionFactory $assertionFactory;
     private static ?\Throwable $lastException = null;
     private ?DataSetInterface $currentDataSet = null;
     private static ?ClientManager $clientManager = null;
@@ -77,12 +77,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
 
         $this->actionFactory = ActionFactory::createFactory();
         $this->assertionFactory = AssertionFactory::createFactory();
-    }
-
-    protected function refreshCrawlerAndNavigator(): void
-    {
-        self::$crawler = self::$client->refreshCrawler();
-        $this->navigator = Navigator::create(self::$crawler);
     }
 
     public function setBasilStepName(string $stepName): void
@@ -200,5 +194,11 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public static function hasException(): bool
     {
         return self::$lastException instanceof \Throwable;
+    }
+
+    protected function refreshCrawlerAndNavigator(): void
+    {
+        self::$crawler = self::$client->refreshCrawler();
+        $this->navigator = Navigator::create(self::$crawler);
     }
 }

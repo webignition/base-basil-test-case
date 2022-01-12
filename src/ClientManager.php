@@ -58,8 +58,8 @@ class ClientManager
         $browserStartState = self::STATE_UNKNOWN;
 
         while (
-            self::STATE_UNKNOWN === $browserStartState &&
-            false === $this->hasStartAttemptLimitBeenReached()
+            self::STATE_UNKNOWN === $browserStartState
+            && false === $this->hasStartAttemptLimitBeenReached()
         ) {
             try {
                 $this->client->start();
@@ -70,7 +70,7 @@ class ClientManager
                 if (false === $this->isBrowserStartException($exception)) {
                     $browserStartState = self::STATE_FAILED;
                 } else {
-                    $this->failedStartAttemptCount++;
+                    ++$this->failedStartAttemptCount;
                 }
             }
         }

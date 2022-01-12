@@ -25,10 +25,10 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 {
     private const FIXTURES_RELATIVE_PATH = '/Fixtures';
     private const FIXTURES_HTML_RELATIVE_PATH = '/html';
-
-    private static WebServerRunner $webServerRunner;
     protected static ?string $webServerDir;
     protected static ?string $baseUri = '';
+
+    private static WebServerRunner $webServerRunner;
 
     private static ConfigurationInterface $basilTestConfiguration;
 
@@ -57,6 +57,13 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
         parent::tearDownAfterClass();
 
         static::stopWebServer();
+    }
+
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+
+        self::assertSame(BaseTestRunner::STATUS_PASSED, $this->getStatus());
     }
 
     public function testClientIsInstantiated(): void
@@ -253,13 +260,6 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
         $this->clearLastException();
         self::assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
-    }
-
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-
-        self::assertSame(BaseTestRunner::STATUS_PASSED, $this->getStatus());
     }
 
     private static function stopWebServer(): void
