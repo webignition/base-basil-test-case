@@ -43,7 +43,7 @@
         ]
     },
     "require": {
-        "php": "^8.0",
+        "php": "^8.0|^8.1",
         "symfony/panther": "^1.0|^2.0",
         "phpunit/phpunit": "^9.5",
         "webignition/symfony-panther-dom-crawler-navigator": ">=0.23,<1",
