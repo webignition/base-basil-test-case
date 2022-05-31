@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase;
 
 use PHPUnit\Framework\Test;
-use webignition\BasilModels\DataSet\DataSetInterface;
-use webignition\BasilModels\StatementInterface;
+use webignition\BasilModels\Model\DataSet\DataSetInterface;
+use webignition\BasilModels\Model\StatementInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 
 interface BasilTestCaseInterface extends Test

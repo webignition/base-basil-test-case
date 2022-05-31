@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase;
 
 use Symfony\Component\Panther\Client;
-use webignition\BasilModels\Test\ConfigurationInterface;
+use webignition\BasilModels\Model\Test\ConfigurationInterface;
 
 class ClientManager
 {
