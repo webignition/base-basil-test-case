@@ -11,8 +11,8 @@ use Symfony\Component\Panther\ProcessManager\BrowserManagerInterface;
 use Symfony\Component\Panther\ProcessManager\ChromeManager;
 use Symfony\Component\Panther\ProcessManager\FirefoxManager;
 use webignition\BaseBasilTestCase\ClientManager;
-use webignition\BasilModels\Test\Configuration;
-use webignition\BasilModels\Test\ConfigurationInterface;
+use webignition\BasilModels\Model\Test\Configuration;
+use webignition\BasilModels\Model\Test\ConfigurationInterface;
 use webignition\ObjectReflector\ObjectReflector;
 
 class ClientManagerTest extends TestCase
