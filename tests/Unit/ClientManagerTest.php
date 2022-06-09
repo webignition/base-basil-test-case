@@ -11,18 +11,13 @@ use Symfony\Component\Panther\ProcessManager\BrowserManagerInterface;
 use Symfony\Component\Panther\ProcessManager\ChromeManager;
 use Symfony\Component\Panther\ProcessManager\FirefoxManager;
 use webignition\BaseBasilTestCase\ClientManager;
-use webignition\BasilModels\Model\Test\Configuration;
-use webignition\BasilModels\Model\Test\ConfigurationInterface;
 use webignition\ObjectReflector\ObjectReflector;
 
 class ClientManagerTest extends TestCase
 {
     public function testCreateFireFoxClient(): void
     {
-        $configuration = new Configuration('firefox', 'http://example.com');
-
-        $clientManager = new ClientManager($configuration);
-        self::assertSame($configuration, $clientManager->getConfiguration());
+        $clientManager = new ClientManager('firefox');
         self::assertNull($clientManager->getLastException());
 
         $client = $clientManager->getClient();
@@ -33,10 +28,9 @@ class ClientManagerTest extends TestCase
     /**
      * @dataProvider createDataProvider
      */
-    public function testCreateChromeClient(ConfigurationInterface $configuration): void
+    public function testCreateChromeClient(string $browserLabel): void
     {
-        $clientManager = new ClientManager($configuration);
-        self::assertSame($configuration, $clientManager->getConfiguration());
+        $clientManager = new ClientManager($browserLabel);
         self::assertNull($clientManager->getLastException());
 
         $client = $clientManager->getClient();
@@ -45,16 +39,16 @@ class ClientManagerTest extends TestCase
     }
 
     /**
-     * @return array<string, array<string, Configuration>>
+     * @return array<string, array<string, string>>
      */
     public function createDataProvider(): array
     {
         return [
             'chrome' => [
-                'configuration' => new Configuration('chrome', 'http://example.com'),
+                'browserLabel' => 'chrome',
             ],
             'unknown' => [
-                'configuration' => new Configuration('unknown', 'http://example.com'),
+                'browserLabel' => 'unknown',
             ],
         ];
     }
@@ -69,8 +63,7 @@ class ClientManagerTest extends TestCase
         ?\Throwable $expectedLastException,
         int $expectedFailedStartAttemptCount
     ): void {
-        $configuration = new Configuration('chrome', 'http://example.com');
-        $clientManager = new ClientManager($configuration);
+        $clientManager = new ClientManager('chrome');
 
         $browserManager = \Mockery::mock(BrowserManagerInterface::class);
         $browserManager

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase;
 
 use Symfony\Component\Panther\Client;
-use webignition\BasilModels\Model\Test\ConfigurationInterface;
 
 class ClientManager
 {
@@ -25,15 +24,11 @@ class ClientManager
     ];
 
     private ?\Throwable $lastException = null;
-    private ConfigurationInterface $configuration;
     private Client $client;
     private int $failedStartAttemptCount = 0;
 
-    public function __construct(ConfigurationInterface $configuration)
+    public function __construct(string $browserLabel)
     {
-        $this->configuration = $configuration;
-
-        $browserLabel = $this->configuration->getBrowser();
         $clientId = self::CLIENT_ID_MAP[$browserLabel] ?? self::BROWSER_CHROME;
 
         if (self::BROWSER_FIREFOX === $clientId) {
@@ -41,11 +36,6 @@ class ClientManager
         } else {
             $this->client = Client::createChromeClient();
         }
-    }
-
-    public function getConfiguration(): ConfigurationInterface
-    {
-        return $this->configuration;
     }
 
     public function getClient(): Client

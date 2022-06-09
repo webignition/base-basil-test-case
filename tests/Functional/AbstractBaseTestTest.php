@@ -12,8 +12,6 @@ use webignition\BasilModels\Model\Action\Factory as ActionFactory;
 use webignition\BasilModels\Model\Assertion\Assertion;
 use webignition\BasilModels\Model\Assertion\Factory as AssertionFactory;
 use webignition\BasilModels\Model\DataSet\DataSet;
-use webignition\BasilModels\Model\Test\Configuration;
-use webignition\BasilModels\Model\Test\ConfigurationInterface;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\SymfonyPantherWebServerRunner\Options;
@@ -30,12 +28,9 @@ class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTe
 
     private static WebServerRunner $webServerRunner;
 
-    private static ConfigurationInterface $basilTestConfiguration;
-
     public static function setUpBeforeClass(): void
     {
-        self::$basilTestConfiguration = new Configuration('chrome', 'http://example.com');
-        self::setClientManager(new ClientManager(self::$basilTestConfiguration));
+        self::setClientManager(new ClientManager('chrome'));
 
         if (null === self::$baseUri) {
             self::$baseUri = Options::getBaseUri();
