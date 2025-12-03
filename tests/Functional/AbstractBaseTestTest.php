@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase\Tests\Functional;
 
-use PHPUnit\Runner\BaseTestRunner;
 use webignition\BaseBasilTestCase\AbstractBaseTest;
 use webignition\BaseBasilTestCase\ClientManager;
 use webignition\BasilModels\Model\Action\Action;
@@ -53,7 +52,8 @@ class AbstractBaseTestTest extends AbstractBaseTest
     {
         parent::tearDown();
 
-        self::assertSame(BaseTestRunner::STATUS_PASSED, $this->getStatus());
+        // PHPUnit\Runner\BaseTestRunner::STATUS_PASSED === 0
+        self::assertSame(0, $this->getStatus());
     }
 
     public function testClientIsInstantiated(): void
@@ -229,13 +229,16 @@ class AbstractBaseTestTest extends AbstractBaseTest
 
     public function testGetStatus(): void
     {
-        self::assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
+        // PHPUnit\Framework\TestStatus\Unknown()->asInt() === -1
+        self::assertSame(-1, $this->getStatus());
 
+        // PHPUnit\Runner\BaseTestRunner::STATUS_FAILURE === 3
         $this->setLastException(new \Exception());
-        self::assertSame(BaseTestRunner::STATUS_FAILURE, $this->getStatus());
+        self::assertSame(3, $this->getStatus());
 
         $this->clearLastException();
-        self::assertSame(BaseTestRunner::STATUS_UNKNOWN, $this->getStatus());
+        // PHPUnit\Framework\TestStatus\Unknown()->asInt() === -1
+        self::assertSame(-1, $this->getStatus());
     }
 
     private static function stopWebServer(): void
