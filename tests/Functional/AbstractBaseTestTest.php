@@ -6,6 +6,7 @@ namespace webignition\BaseBasilTestCase\Tests\Functional;
 
 use PHPUnit\Runner\BaseTestRunner;
 use Symfony\Component\Panther\DomCrawler\Crawler;
+use webignition\BaseBasilTestCase\AbstractBaseTest;
 use webignition\BaseBasilTestCase\ClientManager;
 use webignition\BasilModels\Model\Action\Action;
 use webignition\BasilModels\Model\Action\Factory as ActionFactory;
@@ -19,7 +20,7 @@ use webignition\SymfonyPantherWebServerRunner\WebServerRunner;
 use webignition\WebDriverElementInspector\Inspector;
 use webignition\WebDriverElementMutator\Mutator;
 
-class AbstractBaseTestTest extends \webignition\BaseBasilTestCase\AbstractBaseTest
+class AbstractBaseTestTest extends AbstractBaseTest
 {
     private const FIXTURES_RELATIVE_PATH = '/Fixtures';
     private const FIXTURES_HTML_RELATIVE_PATH = '/html';
