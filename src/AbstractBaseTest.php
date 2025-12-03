@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase;
 
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Runner\BaseTestRunner;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
 use webignition\BasilModels\Model\Action\Factory as ActionFactory;
@@ -181,9 +180,10 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
 
     public function getStatus(): int
     {
+        // @todo: fix in #151 by returning an instance of \PHPUnit\Framework\TestStatus\TestStatus
         return self::$lastException instanceof \Throwable
-            ? BaseTestRunner::STATUS_FAILURE
-            : parent::getStatus();
+            ? 3 // value of now-removed PHPUnit\Runner\BaseTestRunner::STATUS_FAILURE
+            : parent::status()->asInt();
     }
 
     public static function setClientManager(ClientManager $clientManager): void
