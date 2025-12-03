@@ -6,14 +6,11 @@ $finder = PhpCsFixer\Finder::create()
 
 $config = new PhpCsFixer\Config();
 return $config->setRules([
-    '@PSR12' => true,
+    '@PER-CS' => true,
     '@PhpCsFixer' => true,
     'concat_space' => [
         'spacing' => 'one',
     ],
-    'trailing_comma_in_multiline' => false,
     'php_unit_internal_class' => false,
     'php_unit_test_class_requires_covers' => false,
-    'fully_qualified_strict_types' => false,
-    'ordered_imports' => false,
 ])->setFinder($finder);
