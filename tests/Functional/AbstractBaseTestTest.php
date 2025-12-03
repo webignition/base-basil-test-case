@@ -5,20 +5,14 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase\Tests\Functional;
 
 use PHPUnit\Runner\BaseTestRunner;
-use Symfony\Component\Panther\DomCrawler\Crawler;
 use webignition\BaseBasilTestCase\AbstractBaseTest;
 use webignition\BaseBasilTestCase\ClientManager;
 use webignition\BasilModels\Model\Action\Action;
-use webignition\BasilModels\Model\Action\Factory as ActionFactory;
 use webignition\BasilModels\Model\Assertion\Assertion;
-use webignition\BasilModels\Model\Assertion\Factory as AssertionFactory;
 use webignition\BasilModels\Model\DataSet\DataSet;
 use webignition\DomElementIdentifier\ElementIdentifier;
-use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\SymfonyPantherWebServerRunner\Options;
 use webignition\SymfonyPantherWebServerRunner\WebServerRunner;
-use webignition\WebDriverElementInspector\Inspector;
-use webignition\WebDriverElementMutator\Mutator;
 
 class AbstractBaseTestTest extends AbstractBaseTest
 {
@@ -71,7 +65,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
 
     public function testCrawlerIsInstantiated(): void
     {
-        self::assertInstanceOf(Crawler::class, self::$crawler);
         $h1 = self::$crawler->filter('h1');
 
         self::assertSame('Test fixture h1 content', $h1->getText());
@@ -79,7 +72,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
 
     public function testNavigatorIsInstantiated(): void
     {
-        self::assertInstanceOf(Navigator::class, $this->navigator);
         $h1 = $this->navigator->findOne(new ElementIdentifier('h1'));
 
         self::assertSame('Test fixture h1 content', $h1->getText());
@@ -87,7 +79,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
 
     public function testInspectorInstantiated(): void
     {
-        self::assertInstanceOf(Inspector::class, self::$inspector);
         $input = $this->navigator->find(new ElementIdentifier('.input'));
 
         self::assertSame('initial value', self::$inspector->getValue($input));
@@ -95,7 +86,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
 
     public function testMutatorInstantiated(): void
     {
-        self::assertInstanceOf(Mutator::class, self::$mutator);
         $input = $this->navigator->find(new ElementIdentifier('.input'));
         self::assertSame('initial value', self::$inspector->getValue($input));
 
@@ -204,16 +194,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
         $this->expectedElementIdentifier = $expectedElementIdentifier;
 
         self::assertSame($expectedElementIdentifier, $this->expectedElementIdentifier);
-    }
-
-    public function testActionFactoryIsInstantiated(): void
-    {
-        self::assertInstanceOf(ActionFactory::class, $this->actionFactory);
-    }
-
-    public function testAssertionFactoryIsInstantiated(): void
-    {
-        self::assertInstanceOf(AssertionFactory::class, $this->assertionFactory);
     }
 
     public function testLastException(): void

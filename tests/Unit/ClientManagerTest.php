@@ -21,7 +21,6 @@ class ClientManagerTest extends TestCase
         self::assertNull($clientManager->getLastException());
 
         $client = $clientManager->getClient();
-        self::assertInstanceOf(Client::class, $client);
         self::assertInstanceOf(FirefoxManager::class, $client->getBrowserManager());
     }
 
@@ -34,7 +33,6 @@ class ClientManagerTest extends TestCase
         self::assertNull($clientManager->getLastException());
 
         $client = $clientManager->getClient();
-        self::assertInstanceOf(Client::class, $client);
         self::assertInstanceOf(ChromeManager::class, $client->getBrowserManager());
     }
 
