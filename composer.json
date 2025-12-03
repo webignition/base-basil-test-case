@@ -22,6 +22,20 @@
         }
     },
     "scripts": {
+        "post-install-cmd": [
+            "@patch-panther-compatible-with-browserkit"
+        ],
+        "post-update-cmd": [
+            "@patch-panther-compatible-with-browserkit"
+        ],
+        "patch-panther-compatible-with-browserkit": [
+            "echo 'Patching vendor/symfony/panther/src/Client.php'",
+            "sed -i 's/protected function doRequest($request): object/protected function doRequest($request)/g' vendor/symfony/panther/src/Client.php",
+            "sed -i 's/protected function doRequest($request)/protected function doRequest($request): object/g' vendor/symfony/panther/src/Client.php",
+            "echo 'Patching vendor/symfony/panther/src/DomCrawler/Crawler.php'",
+            "sed -i 's/public function closest(string $selector): ?static/public function closest(string $selector): ?self/g' vendor/symfony/panther/src/DomCrawler/Crawler.php",
+            "sed -i 's/public function closest(string $selector): ?self/public function closest(string $selector): ?static/g' vendor/symfony/panther/src/DomCrawler/Crawler.php"
+        ],
         "cs-fixer-dry-run": "./vendor/bin/php-cs-fixer check --allow-risky=yes --verbose --show-progress none",
         "cs-fixer-fix": "./vendor/bin/php-cs-fixer fix --allow-risky=yes --diff",
         "cs-phpcs": "./vendor/bin/phpcs",
