@@ -39,7 +39,7 @@ class ClientManagerTest extends TestCase
     /**
      * @return array<string, array<string, string>>
      */
-    public function createDataProvider(): array
+    public static function createDataProvider(): array
     {
         return [
             'chrome' => [
@@ -107,7 +107,7 @@ class ClientManagerTest extends TestCase
     /**
      * @return array<string, array<mixed>>
      */
-    public function startDataProvider(): array
+    public static function startDataProvider(): array
     {
         $startFailureException = new \RuntimeException('Could not start chrome (or it crashed) after 30 seconds.');
 
