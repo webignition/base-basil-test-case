@@ -57,7 +57,7 @@
         ]
     },
     "require": {
-        "php": "^8",
+        "php": "^8.4",
         "phpunit/phpunit": "^9.5",
         "symfony/panther": "^1.0|^2.0",
         "webignition/basil-models": "^6.0",
