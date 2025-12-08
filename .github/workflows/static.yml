@@ -8,12 +8,12 @@ on:
 
 jobs:
   phpstan:
-    name: PHPStan - PHP ${{ matrix.php }} ${{ matrix.operating-system }}
+    name: PHPStan - PHP ${{ matrix.php }} basil-models:${{ matrix.basil-models }}
     strategy:
       matrix:
-        operating-system: [ubuntu-latest]
         php: ['8.4', '8.5']
-    runs-on: ${{ matrix.operating-system }}
+        basil-models: ['^6', '^7', '^8', '^9']
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
