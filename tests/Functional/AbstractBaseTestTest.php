@@ -100,19 +100,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
         self::assertSame($stepName, $this->getBasilStepName());
     }
 
-    public function testExaminedValue(): void
-    {
-        self::assertNull($this->getExaminedValue());
-
-        $examinedValue = 'examined value';
-        $this->setExaminedValue($examinedValue);
-
-        self::assertSame($examinedValue, $this->getExaminedValue());
-
-        $this->setExaminedValue(null);
-        self::assertNull($this->getExaminedValue());
-    }
-
     public function testExpectedValue(): void
     {
         self::assertNull($this->getExpectedValue());
