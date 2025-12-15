@@ -91,15 +91,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
         self::assertSame('new value', self::$inspector->getValue($input));
     }
 
-    public function testBasilStepName(): void
-    {
-        $stepName = 'step name';
-
-        $this->setBasilStepName($stepName);
-
-        self::assertSame($stepName, $this->getBasilStepName());
-    }
-
     public function testExpectedValue(): void
     {
         self::assertNull($this->getExpectedValue());

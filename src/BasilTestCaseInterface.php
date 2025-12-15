@@ -10,10 +10,6 @@ use webignition\DomElementIdentifier\ElementIdentifierInterface;
 
 interface BasilTestCaseInterface extends Test
 {
-    public function setBasilStepName(string $stepName): void;
-
-    public function getBasilStepName(): string;
-
     public function getStatus(): int;
 
     public function setExpectedValue(?string $expectedValue): void;
