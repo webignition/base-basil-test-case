@@ -10,7 +10,6 @@ use Symfony\Component\Panther\DomCrawler\Crawler;
 use webignition\BasilModels\Model\Action\Factory as ActionFactory;
 use webignition\BasilModels\Model\Assertion\Factory as AssertionFactory;
 use webignition\BasilModels\Model\DataSet\DataSetInterface;
-use webignition\BasilModels\Model\StatementInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\WebDriverElementInspector\Inspector;
@@ -23,11 +22,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected static Mutator $mutator;
     protected static Client $client;
     protected static Crawler $crawler;
-
-    /**
-     * @var StatementInterface[]
-     */
-    protected array $handledStatements = [];
     protected ?ElementIdentifierInterface $examinedElementIdentifier = null;
     protected ?ElementIdentifierInterface $expectedElementIdentifier = null;
     protected ActionFactory $actionFactory;
@@ -86,11 +80,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public function getBasilStepName(): string
     {
         return $this->basilStepName ?? '';
-    }
-
-    public function getHandledStatements(): array
-    {
-        return $this->handledStatements;
     }
 
     public function setExaminedValue(?string $examinedValue): void

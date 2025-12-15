@@ -6,7 +6,6 @@ namespace webignition\BaseBasilTestCase;
 
 use PHPUnit\Framework\Test;
 use webignition\BasilModels\Model\DataSet\DataSetInterface;
-use webignition\BasilModels\Model\StatementInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 
 interface BasilTestCaseInterface extends Test
@@ -16,11 +15,6 @@ interface BasilTestCaseInterface extends Test
     public function getBasilStepName(): string;
 
     public function getStatus(): int;
-
-    /**
-     * @return StatementInterface[]
-     */
-    public function getHandledStatements(): array;
 
     public function setExaminedValue(?string $examinedValue): void;
 

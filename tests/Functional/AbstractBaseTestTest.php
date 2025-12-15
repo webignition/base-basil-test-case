@@ -6,8 +6,6 @@ namespace webignition\BaseBasilTestCase\Tests\Functional;
 
 use webignition\BaseBasilTestCase\AbstractBaseTest;
 use webignition\BaseBasilTestCase\ClientManager;
-use webignition\BasilModels\Model\Action\Action;
-use webignition\BasilModels\Model\Assertion\Assertion;
 use webignition\BasilModels\Model\DataSet\DataSet;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyPantherWebServerRunner\Options;
@@ -100,34 +98,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
         $this->setBasilStepName($stepName);
 
         self::assertSame($stepName, $this->getBasilStepName());
-    }
-
-    public function testHandledStatements(): void
-    {
-        self::assertSame([], $this->getHandledStatements());
-
-        $this->handledStatements[] = $this->actionFactory->createFromJson(
-            (string) json_encode(new Action(
-                'click $".selector"',
-                'click',
-                '$".selector"',
-                '$".selector"'
-            ))
-        );
-
-        $this->handledStatements[] = $this->assertionFactory->createFromJson(
-            (string) json_encode(new Assertion(
-                '$".selector" is "value"',
-                '$".selector"',
-                'is',
-                '"value"'
-            ))
-        );
-
-        self::assertSame(
-            $this->handledStatements,
-            $this->getHandledStatements()
-        );
     }
 
     public function testExaminedValue(): void
