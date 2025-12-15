@@ -12,10 +12,6 @@ interface BasilTestCaseInterface extends Test
 {
     public function getStatus(): int;
 
-    public function setExpectedValue(?string $expectedValue): void;
-
-    public function getExpectedValue(): ?string;
-
     public function setBooleanExaminedValue(bool $examinedValue): void;
 
     public function setBooleanExpectedValue(bool $expectedValue): void;
