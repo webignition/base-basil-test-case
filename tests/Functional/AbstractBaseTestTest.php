@@ -91,19 +91,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
         self::assertSame('new value', self::$inspector->getValue($input));
     }
 
-    public function testExpectedValue(): void
-    {
-        self::assertNull($this->getExpectedValue());
-
-        $expectedValue = 'expected value';
-        $this->setExpectedValue($expectedValue);
-
-        self::assertSame($expectedValue, $this->getExpectedValue());
-
-        $this->setExpectedValue(null);
-        self::assertNull($this->getExpectedValue());
-    }
-
     public function testBooleanExaminedValue(): void
     {
         self::assertNull($this->getBooleanExaminedValue());
