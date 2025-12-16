@@ -74,6 +74,7 @@
         "phpstan/phpstan-mockery": "^2.0",
         "phpstan/phpstan-phpunit": "^2.0",
         "squizlabs/php_codesniffer": "^4.0",
+        "webignition/base-panther-test-case": "^2",
         "webignition/object-reflector": ">=1.0,<2",
         "webignition/symfony-panther-webserver-runner": ">=0.6,<1"
     },

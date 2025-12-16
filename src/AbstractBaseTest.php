@@ -7,10 +7,10 @@ namespace webignition\BaseBasilTestCase;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
+use webignition\BaseBasilTestCase\Mutator\Mutator;
 use webignition\BasilModels\Model\Assertion\Factory as AssertionFactory;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\WebDriverElementInspector\Inspector;
-use webignition\WebDriverElementMutator\Mutator;
 
 abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterface
 {
@@ -28,7 +28,7 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public static function setUpBeforeClass(): void
     {
         self::$inspector = Inspector::create();
-        self::$mutator = Mutator::create();
+        self::$mutator = new Mutator();
 
         if (null === self::$clientManager) {
             throw new \RuntimeException('Call self::setClientManager() first');
