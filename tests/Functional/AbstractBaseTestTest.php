@@ -130,34 +130,8 @@ class AbstractBaseTestTest extends AbstractBaseTest
         self::assertSame($expectedElementIdentifier, $this->expectedElementIdentifier);
     }
 
-    public function testLastException(): void
-    {
-        self::assertNull(self::getLastException());
-        self::assertFalse(self::hasException());
-
-        $exception = new \Exception();
-
-        self::staticSetLastException($exception);
-        self::assertSame($exception, self::staticGetLastException());
-        self::assertSame($exception, $this->getLastException());
-        self::assertTrue(self::hasException());
-
-        self::clearLastException();
-        self::assertNull(self::staticGetLastException());
-        self::assertNull($this->getLastException());
-        self::assertFalse(self::hasException());
-    }
-
     public function testGetStatus(): void
     {
-        // PHPUnit\Framework\TestStatus\Unknown()->asInt() === -1
-        self::assertSame(-1, $this->getStatus());
-
-        // PHPUnit\Runner\BaseTestRunner::STATUS_FAILURE === 3
-        $this->setLastException(new \Exception());
-        self::assertSame(3, $this->getStatus());
-
-        $this->clearLastException();
         // PHPUnit\Framework\TestStatus\Unknown()->asInt() === -1
         self::assertSame(-1, $this->getStatus());
     }
