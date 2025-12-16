@@ -62,8 +62,7 @@
         "symfony/panther": "^1.0|^2.0",
         "webignition/basil-models": "^6 || ^7 || ^8 || ^9",
         "webignition/symfony-panther-dom-crawler-navigator": ">=0.23,<1",
-        "webignition/webdriver-element-inspector": ">=0.10,<1",
-        "webignition/webdriver-element-mutator": ">=0.6,<1"
+        "webignition/webdriver-element-inspector": ">=0.10,<1"
     },
     "require-dev": {
         "dbrekelmans/bdi": "^1.0",

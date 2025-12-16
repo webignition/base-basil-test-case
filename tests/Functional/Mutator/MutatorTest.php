@@ -4,26 +4,20 @@ declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase\Tests\Functional\Mutator;
 
+use webignition\BaseBasilTestCase\Mutator\Mutator;
 use webignition\BasePantherTestCase\AbstractBrowserTestCase;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\WebDriverElementInspector\Inspector;
-use webignition\WebDriverElementMutator\Mutator;
 
 class MutatorTest extends AbstractBrowserTestCase
 {
-    private const FIXTURES_RELATIVE_PATH = '/Fixtures';
-    private const FIXTURES_HTML_RELATIVE_PATH = '/html';
-
     private Mutator $mutator;
     private Inspector $inspector;
 
     public static function setUpBeforeClass(): void
     {
-        self::$webServerDir = __DIR__
-            . '/../..'
-            . self::FIXTURES_RELATIVE_PATH
-            . self::FIXTURES_HTML_RELATIVE_PATH;
+        self::$webServerDir = __DIR__ . '/../../Fixtures/html';
 
         parent::setUpBeforeClass();
     }
@@ -32,7 +26,7 @@ class MutatorTest extends AbstractBrowserTestCase
     {
         parent::setUp();
 
-        $this->mutator = Mutator::create();
+        $this->mutator = new Mutator();
         $this->inspector = Inspector::create();
     }
 
