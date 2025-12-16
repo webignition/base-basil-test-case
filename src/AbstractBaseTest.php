@@ -25,9 +25,11 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected AssertionFactory $assertionFactory;
     private ?bool $booleanExaminedValue = null;
     private ?bool $booleanExpectedValue = null;
-    private static ?\Throwable $lastException = null;
     private static ?ClientManager $clientManager = null;
 
+    /**
+     * @throws \Throwable
+     */
     public static function setUpBeforeClass(): void
     {
         self::$inspector = Inspector::create();
@@ -41,7 +43,11 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         $browserStartState = self::$clientManager->start();
 
         if (ClientManager::STATE_FAILED === $browserStartState) {
-            self::$lastException = self::$clientManager->getLastException();
+            $exception = self::$clientManager->getLastException();
+
+            if ($exception instanceof \Throwable) {
+                throw $exception;
+            }
         }
     }
 
@@ -52,10 +58,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
 
     protected function setUp(): void
     {
-        if (self::hasException()) {
-            return;
-        }
-
         parent::setUp();
 
         $this->refreshCrawlerAndNavigator();
@@ -93,47 +95,15 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         return $this->expectedElementIdentifier;
     }
 
-    public static function staticSetLastException(\Throwable $exception): void
-    {
-        self::$lastException = $exception;
-    }
-
-    public function setLastException(\Throwable $exception): void
-    {
-        self::$lastException = $exception;
-    }
-
-    public static function staticGetLastException(): ?\Throwable
-    {
-        return self::$lastException;
-    }
-
-    public function getLastException(): ?\Throwable
-    {
-        return self::$lastException;
-    }
-
-    public function clearLastException(): void
-    {
-        self::$lastException = null;
-    }
-
     public function getStatus(): int
     {
-        // @todo: fix in #151 by returning an instance of \PHPUnit\Framework\TestStatus\TestStatus
-        return self::$lastException instanceof \Throwable
-            ? 3 // value of now-removed PHPUnit\Runner\BaseTestRunner::STATUS_FAILURE
-            : parent::status()->asInt();
+        // @todo: fix in #161 by returning an instance of \PHPUnit\Framework\TestStatus\TestStatus
+        return parent::status()->asInt();
     }
 
     public static function setClientManager(ClientManager $clientManager): void
     {
         self::$clientManager = $clientManager;
-    }
-
-    public static function hasException(): bool
-    {
-        return self::$lastException instanceof \Throwable;
     }
 
     protected function refreshCrawlerAndNavigator(): void
