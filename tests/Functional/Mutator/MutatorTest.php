@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase\Tests\Functional\Mutator;
 
+use webignition\BaseBasilTestCase\Inspector\Inspector;
 use webignition\BaseBasilTestCase\Mutator\Mutator;
-use webignition\BasePantherTestCase\AbstractBrowserTestCase;
+use webignition\BaseBasilTestCase\Tests\Functional\AbstractPantherTestCase;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
-use webignition\WebDriverElementInspector\Inspector;
 
-class MutatorTest extends AbstractBrowserTestCase
+class MutatorTest extends AbstractPantherTestCase
 {
     private Mutator $mutator;
     private Inspector $inspector;
@@ -27,7 +27,7 @@ class MutatorTest extends AbstractBrowserTestCase
         parent::setUp();
 
         $this->mutator = new Mutator();
-        $this->inspector = Inspector::create();
+        $this->inspector = new Inspector();
     }
 
     /**
