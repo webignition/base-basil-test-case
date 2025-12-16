@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase;
 
 use PHPUnit\Framework\Test;
-use webignition\BasilModels\Model\DataSet\DataSetInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 
 interface BasilTestCaseInterface extends Test
@@ -31,10 +30,6 @@ interface BasilTestCaseInterface extends Test
     public static function staticGetLastException(): ?\Throwable;
 
     public function getLastException(): ?\Throwable;
-
-    public function setCurrentDataSet(?DataSetInterface $dataSet): void;
-
-    public function getCurrentDataSet(): ?DataSetInterface;
 
     public static function setClientManager(ClientManager $clientManager): void;
 

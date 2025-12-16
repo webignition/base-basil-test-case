@@ -6,7 +6,6 @@ namespace webignition\BaseBasilTestCase\Tests\Functional;
 
 use webignition\BaseBasilTestCase\AbstractBaseTest;
 use webignition\BaseBasilTestCase\ClientManager;
-use webignition\BasilModels\Model\DataSet\DataSet;
 use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyPantherWebServerRunner\Options;
 use webignition\SymfonyPantherWebServerRunner\WebServerRunner;
@@ -147,19 +146,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
         self::assertNull(self::staticGetLastException());
         self::assertNull($this->getLastException());
         self::assertFalse(self::hasException());
-    }
-
-    public function testCurrentDataSet(): void
-    {
-        self::assertNull($this->getCurrentDataSet());
-
-        $dataSet = new DataSet('name', []);
-
-        $this->setCurrentDataSet($dataSet);
-        self::assertSame($dataSet, $this->getCurrentDataSet());
-
-        $this->setCurrentDataSet(null);
-        self::assertNull($this->getCurrentDataSet());
     }
 
     public function testGetStatus(): void

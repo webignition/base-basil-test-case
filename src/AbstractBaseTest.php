@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
 use webignition\BasilModels\Model\Assertion\Factory as AssertionFactory;
-use webignition\BasilModels\Model\DataSet\DataSetInterface;
 use webignition\DomElementIdentifier\ElementIdentifierInterface;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\WebDriverElementInspector\Inspector;
@@ -27,7 +26,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     private ?bool $booleanExaminedValue = null;
     private ?bool $booleanExpectedValue = null;
     private static ?\Throwable $lastException = null;
-    private ?DataSetInterface $currentDataSet = null;
     private static ?ClientManager $clientManager = null;
 
     public static function setUpBeforeClass(): void
@@ -118,16 +116,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     public function clearLastException(): void
     {
         self::$lastException = null;
-    }
-
-    public function setCurrentDataSet(?DataSetInterface $dataSet): void
-    {
-        $this->currentDataSet = $dataSet;
-    }
-
-    public function getCurrentDataSet(): ?DataSetInterface
-    {
-        return $this->currentDataSet;
     }
 
     public function getStatus(): int
