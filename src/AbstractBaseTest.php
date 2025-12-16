@@ -60,12 +60,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         $this->assertionFactory = AssertionFactory::createFactory();
     }
 
-    public function getStatus(): int
-    {
-        // @todo: fix in #161 by returning an instance of \PHPUnit\Framework\TestStatus\TestStatus
-        return parent::status()->asInt();
-    }
-
     public static function setClientManager(ClientManager $clientManager): void
     {
         self::$clientManager = $clientManager;
