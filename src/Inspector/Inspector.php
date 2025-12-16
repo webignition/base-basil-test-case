@@ -15,11 +15,6 @@ class Inspector
 
     private const string VALUE_ATTRIBUTE = 'value';
 
-    public static function create(): Inspector
-    {
-        return new Inspector();
-    }
-
     public function getValue(WebDriverElementCollectionInterface $collection): ?string
     {
         if ($collection instanceof RadioButtonCollection || $collection instanceof SelectOptionCollection) {

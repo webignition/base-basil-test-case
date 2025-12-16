@@ -17,7 +17,7 @@ class InspectorTest extends AbstractPantherTestCase
     {
         parent::setUp();
 
-        $this->inspector = Inspector::create();
+        $this->inspector = new Inspector();
     }
 
     /**
