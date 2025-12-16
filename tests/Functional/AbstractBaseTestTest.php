@@ -49,8 +49,7 @@ class AbstractBaseTestTest extends AbstractBaseTest
     {
         parent::tearDown();
 
-        // PHPUnit\Runner\BaseTestRunner::STATUS_PASSED === 0
-        self::assertSame(0, $this->getStatus());
+        self::assertSame(0, $this->status()->asInt());
     }
 
     public function testClientIsInstantiated(): void
@@ -88,12 +87,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
 
         self::$mutator->setValue($input, 'new value');
         self::assertSame('new value', self::$inspector->getValue($input));
-    }
-
-    public function testGetStatus(): void
-    {
-        // PHPUnit\Framework\TestStatus\Unknown()->asInt() === -1
-        self::assertSame(-1, $this->getStatus());
     }
 
     private static function stopWebServer(): void
