@@ -27,7 +27,7 @@ class InspectorTest extends AbstractPantherTestCase
     {
         $crawler = self::$client->request('GET', $fixture);
         $navigator = Navigator::create($crawler);
-        $collection = $navigator->find(new ElementIdentifier($elementCssSelector));
+        $collection = $navigator->find((string) json_encode(new ElementIdentifier($elementCssSelector)));
 
         $this->assertSame($expectedValue, $this->inspector->getValue($collection));
     }

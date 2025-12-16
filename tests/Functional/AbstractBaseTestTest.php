@@ -68,21 +68,21 @@ class AbstractBaseTestTest extends AbstractBaseTest
 
     public function testNavigatorIsInstantiated(): void
     {
-        $h1 = $this->navigator->findOne(new ElementIdentifier('h1'));
+        $h1 = $this->navigator->findOne((string) json_encode(new ElementIdentifier('h1')));
 
         self::assertSame('Test fixture h1 content', $h1->getText());
     }
 
     public function testInspectorInstantiated(): void
     {
-        $input = $this->navigator->find(new ElementIdentifier('.input'));
+        $input = $this->navigator->find((string) json_encode(new ElementIdentifier('.input')));
 
         self::assertSame('initial value', self::$inspector->getValue($input));
     }
 
     public function testMutatorInstantiated(): void
     {
-        $input = $this->navigator->find(new ElementIdentifier('.input'));
+        $input = $this->navigator->find((string) json_encode(new ElementIdentifier('.input')));
         self::assertSame('initial value', self::$inspector->getValue($input));
 
         self::$mutator->setValue($input, 'new value');
