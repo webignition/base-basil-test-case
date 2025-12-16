@@ -90,26 +90,6 @@ class AbstractBaseTestTest extends AbstractBaseTest
         self::assertSame('new value', self::$inspector->getValue($input));
     }
 
-    public function testExaminedElementIdentifier(): void
-    {
-        self::assertNull($this->getExaminedElementIdentifier());
-
-        $examinedElementIdentifier = new ElementIdentifier('.selector');
-        $this->examinedElementIdentifier = $examinedElementIdentifier;
-
-        self::assertSame($examinedElementIdentifier, $this->examinedElementIdentifier);
-    }
-
-    public function testExpectedElementIdentifier(): void
-    {
-        self::assertNull($this->getExpectedElementIdentifier());
-
-        $expectedElementIdentifier = new ElementIdentifier('.selector');
-        $this->expectedElementIdentifier = $expectedElementIdentifier;
-
-        self::assertSame($expectedElementIdentifier, $this->expectedElementIdentifier);
-    }
-
     public function testGetStatus(): void
     {
         // PHPUnit\Framework\TestStatus\Unknown()->asInt() === -1
