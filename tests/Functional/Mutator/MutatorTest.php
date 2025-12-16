@@ -40,11 +40,9 @@ class MutatorTest extends AbstractPantherTestCase
         ?string $expectedValue
     ): void {
         $crawler = self::$client->request('GET', $fixture);
-
         $navigator = Navigator::create($crawler);
-        $elementLocator = new ElementIdentifier($elementCssSelector);
 
-        $collection = $navigator->find($elementLocator);
+        $collection = $navigator->find((string) json_encode(new ElementIdentifier($elementCssSelector)));
 
         $this->mutator->setValue($collection, $value);
 
