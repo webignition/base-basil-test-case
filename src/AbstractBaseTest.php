@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
 use webignition\BasilModels\Model\Assertion\Factory as AssertionFactory;
-use webignition\DomElementIdentifier\ElementIdentifierInterface;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 use webignition\WebDriverElementInspector\Inspector;
 use webignition\WebDriverElementMutator\Mutator;
@@ -20,8 +19,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected static Mutator $mutator;
     protected static Client $client;
     protected static Crawler $crawler;
-    protected ?ElementIdentifierInterface $examinedElementIdentifier = null;
-    protected ?ElementIdentifierInterface $expectedElementIdentifier = null;
     protected AssertionFactory $assertionFactory;
     private static ?ClientManager $clientManager = null;
 
@@ -61,16 +58,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         $this->refreshCrawlerAndNavigator();
 
         $this->assertionFactory = AssertionFactory::createFactory();
-    }
-
-    public function getExaminedElementIdentifier(): ?ElementIdentifierInterface
-    {
-        return $this->examinedElementIdentifier;
-    }
-
-    public function getExpectedElementIdentifier(): ?ElementIdentifierInterface
-    {
-        return $this->expectedElementIdentifier;
     }
 
     public function getStatus(): int
