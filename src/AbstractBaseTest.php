@@ -23,8 +23,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected ?ElementIdentifierInterface $examinedElementIdentifier = null;
     protected ?ElementIdentifierInterface $expectedElementIdentifier = null;
     protected AssertionFactory $assertionFactory;
-    private ?bool $booleanExaminedValue = null;
-    private ?bool $booleanExpectedValue = null;
     private static ?ClientManager $clientManager = null;
 
     /**
@@ -63,26 +61,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         $this->refreshCrawlerAndNavigator();
 
         $this->assertionFactory = AssertionFactory::createFactory();
-    }
-
-    public function setBooleanExaminedValue(bool $examinedValue): void
-    {
-        $this->booleanExaminedValue = $examinedValue;
-    }
-
-    public function getBooleanExaminedValue(): ?bool
-    {
-        return $this->booleanExaminedValue;
-    }
-
-    public function setBooleanExpectedValue(bool $expectedValue): void
-    {
-        $this->booleanExpectedValue = $expectedValue;
-    }
-
-    public function getBooleanExpectedValue(): ?bool
-    {
-        return $this->booleanExpectedValue;
     }
 
     public function getExaminedElementIdentifier(): ?ElementIdentifierInterface
