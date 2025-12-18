@@ -7,5 +7,8 @@ namespace webignition\BaseBasilTestCase\Attribute;
 #[\Attribute(\Attribute::TARGET_METHOD)]
 readonly class StepName
 {
+    /**
+     * @param non-empty-string $name
+     */
     public function __construct(public string $name) {}
 }
