@@ -9,7 +9,6 @@ use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
 use webignition\BaseBasilTestCase\Inspector\Inspector;
 use webignition\BaseBasilTestCase\Mutator\Mutator;
-use webignition\BasilModels\Model\Assertion\Factory as AssertionFactory;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 
 abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterface
@@ -19,7 +18,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
     protected static Mutator $mutator;
     protected static Client $client;
     protected static Crawler $crawler;
-    protected AssertionFactory $assertionFactory;
     private static ?ClientManager $clientManager = null;
 
     /**
@@ -56,8 +54,6 @@ abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterfa
         parent::setUp();
 
         $this->refreshCrawlerAndNavigator();
-
-        $this->assertionFactory = AssertionFactory::createFactory();
     }
 
     public static function setClientManager(ClientManager $clientManager): void
