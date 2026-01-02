@@ -15,7 +15,9 @@ use webignition\BasilModels\Model\Assertion\AssertionInterface;
 readonly class Statements
 {
     /**
-     * @param array<SerializedAction|SerializedAssertion> $statements
+     * Each string must be a json-serialized SerializedAction or SerializedAssertion.
+     *
+     * @param string[] $statements
      */
     public function __construct(public array $statements) {}
 }
