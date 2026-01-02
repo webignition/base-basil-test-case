@@ -8,11 +8,10 @@ on:
 
 jobs:
   phpstan:
-    name: PHPStan - PHP ${{ matrix.php }} basil-models:${{ matrix.basil-models }}
+    name: PHPStan - PHP ${{ matrix.php }}
     strategy:
       matrix:
         php: ['8.4', '8.5']
-        basil-models: ['^6', '^7', '^8', '^9']
     runs-on: ubuntu-latest
 
     steps:
@@ -25,11 +24,8 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: zip
 
-      - name: Download dependencies
-        uses: php-actions/composer@v6
-        with:
-          php_version: ${{ matrix.php }}
-          args: --ignore-platform-req=ext-zip
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: PHPStan
         run: composer static-analysis

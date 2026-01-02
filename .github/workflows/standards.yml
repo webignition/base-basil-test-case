@@ -8,11 +8,10 @@ on:
 
 jobs:
   php-cs-fixer:
-    name: PHP CS Fixer Dry Run - PHP ${{ matrix.php }} basil-models:${{ matrix.basil-models }}
+    name: PHP CS Fixer Dry Run - PHP ${{ matrix.php }}
     strategy:
       matrix:
         php: ['8.4', '8.5']
-        basil-models: ['^6', '^7', '^8', '^9']
     runs-on: ubuntu-latest
 
     steps:
@@ -25,9 +24,7 @@ jobs:
           php-version: ${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: |
-          sed -i 's/"\^6 || \^7 || \^8 || \^9"/\"${{ matrix.basil-models }}"/g' composer.json
-          composer install --no-progress --prefer-dist --optimize-autoloader
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run
         env:
@@ -35,12 +32,11 @@ jobs:
         run: composer cs-fixer-dry-run
 
   phpcs:
-    name: PHPCS - PHP ${{ matrix.php }} basil-models:${{ matrix.basil-models }}
+    name: PHPCS - PHP ${{ matrix.php }}
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
         php: ['8.4', '8.5']
-        basil-models: ['^6', '^7', '^8', '^9']
     runs-on: ubuntu-latest
 
     steps:
@@ -54,9 +50,7 @@ jobs:
           extensions: zip
 
       - name: Install Composer dependencies
-        run: |
-          sed -i 's/"\^6 || \^7 || \^8 || \^9"/\"${{ matrix.basil-models }}"/g' composer.json
-          composer install --no-progress --prefer-dist --optimize-autoloader
+        run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run PHPCS
         run: composer cs-phpcs
