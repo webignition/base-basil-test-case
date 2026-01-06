@@ -11,7 +11,7 @@ use webignition\BaseBasilTestCase\Inspector\Inspector;
 use webignition\BaseBasilTestCase\Mutator\Mutator;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 
-abstract class AbstractBaseTest extends TestCase implements BasilTestCaseInterface
+abstract class AbstractBaseTest extends TestCase
 {
     protected Navigator $navigator;
     protected static Inspector $inspector;
