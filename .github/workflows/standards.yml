@@ -8,7 +8,7 @@ on:
 
 jobs:
   php-cs-fixer:
-    name: PHP CS Fixer Dry Run - PHP ${{ matrix.php }} ${{ matrix.phpunit }}
+    name: PHP CS Fixer Dry Run - PHP ${{ matrix.php }} phpunit ${{ matrix.phpunit }}
     strategy:
       matrix:
         php: ['8.4', '8.5']
@@ -35,7 +35,7 @@ jobs:
         run: composer cs-fixer-dry-run
 
   phpcs:
-    name: PHPCS - PHP ${{ matrix.php }} ${{ matrix.phpunit }}
+    name: PHPCS - PHP ${{ matrix.php }} phpunit ${{ matrix.phpunit }}
     strategy:
       matrix:
         operating-system: [ubuntu-latest]

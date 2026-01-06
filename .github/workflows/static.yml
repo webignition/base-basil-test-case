@@ -8,7 +8,7 @@ on:
 
 jobs:
   phpstan:
-    name: PHPStan - PHP ${{ matrix.php }} ${{ matrix.phpunit }}
+    name: PHPStan - PHP ${{ matrix.php }} phpunit ${{ matrix.phpunit }}
     strategy:
       matrix:
         php: ['8.4', '8.5']
