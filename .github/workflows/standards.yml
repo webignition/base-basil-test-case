@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         php: ['8.4', '8.5']
+        phpunit: ['^10', '^11', '^12']
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +25,9 @@ jobs:
           php-version: ${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
+        run: |
+          sed -i 's/"phpunit\/phpunit": "^10 || ^11 || ^12"/"phpunit\/phpunit": "${{ matrix.phpunit }}"/g' composer.json
+          composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run
         env:
@@ -37,6 +40,7 @@ jobs:
       matrix:
         operating-system: [ubuntu-latest]
         php: ['8.4', '8.5']
+        phpunit: ['^10', '^11', '^12']
     runs-on: ubuntu-latest
 
     steps:
@@ -50,7 +54,9 @@ jobs:
           extensions: zip
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
+        run: |
+          sed -i 's/"phpunit\/phpunit": "^10 || ^11 || ^12"/"phpunit\/phpunit": "${{ matrix.phpunit }}"/g' composer.json
+          composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run PHPCS
         run: composer cs-phpcs
