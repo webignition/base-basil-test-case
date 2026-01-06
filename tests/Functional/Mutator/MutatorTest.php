@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase\Tests\Functional\Mutator;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use webignition\BaseBasilTestCase\Inspector\Inspector;
 use webignition\BaseBasilTestCase\Mutator\Mutator;
 use webignition\BaseBasilTestCase\Tests\Functional\AbstractPantherTestCase;
@@ -30,9 +31,7 @@ class MutatorTest extends AbstractPantherTestCase
         $this->inspector = new Inspector();
     }
 
-    /**
-     * @dataProvider setValueDataProvider
-     */
+    #[DataProvider('setValueDataProvider')]
     public function testSetValue(
         string $fixture,
         string $elementCssSelector,

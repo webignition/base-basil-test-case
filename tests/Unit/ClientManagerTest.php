@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase\Tests\Unit;
 
 use Facebook\WebDriver\WebDriver;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\ProcessManager\BrowserManagerInterface;
@@ -24,9 +25,7 @@ class ClientManagerTest extends TestCase
         self::assertInstanceOf(FirefoxManager::class, $client->getBrowserManager());
     }
 
-    /**
-     * @dataProvider createDataProvider
-     */
+    #[DataProvider('createDataProvider')]
     public function testCreateChromeClient(string $browserLabel): void
     {
         $clientManager = new ClientManager($browserLabel);
@@ -51,9 +50,7 @@ class ClientManagerTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider startDataProvider
-     */
+    #[DataProvider('startDataProvider')]
     public function testStart(
         ?int $startSuccessIteration,
         \Throwable $startFailureException,
