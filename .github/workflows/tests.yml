@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         php: ['8.4']
-        phpunit: ['^10', '^11']
+        phpunit: ['^10', '^11', '^12']
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
