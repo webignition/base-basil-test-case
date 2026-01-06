@@ -11,9 +11,8 @@ jobs:
     name: PHPUnit unit tests - PHP ${{ matrix.php }} phpunit ${{ matrix.phpunit }}
     strategy:
       matrix:
-#        php: ['8.4', '8.5']
         php: ['8.4']
-#        phpunit: ['^10', '^11', '^12']
+        phpunit: ['^10', '^11', '^12']
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
