@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase\Tests\Functional\Inspector;
 
+use PHPUnit\Framework\Attributes\DataProvider;
 use webignition\BaseBasilTestCase\Inspector\Inspector;
 use webignition\BaseBasilTestCase\Tests\Functional\AbstractPantherTestCase;
 use webignition\DomElementIdentifier\ElementIdentifier;
@@ -20,9 +21,7 @@ class InspectorTest extends AbstractPantherTestCase
         $this->inspector = new Inspector();
     }
 
-    /**
-     * @dataProvider getValueDataProvider
-     */
+    #[DataProvider('getValueDataProvider')]
     public function testGetValue(string $fixture, string $elementCssSelector, ?string $expectedValue): void
     {
         $crawler = self::$client->request('GET', $fixture);

@@ -8,10 +8,11 @@ on:
 
 jobs:
   php-cs-fixer:
-    name: PHP CS Fixer Dry Run - PHP ${{ matrix.php }}
+    name: PHP CS Fixer Dry Run - PHP ${{ matrix.php }} phpunit ${{ matrix.phpunit }}
     strategy:
       matrix:
         php: ['8.4', '8.5']
+        phpunit: ['^10', '^11', '^12']
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +25,9 @@ jobs:
           php-version: ${{ matrix.php }}
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
+        run: |
+          sed -i 's/"phpunit\/phpunit": "^10 || ^11 || ^12"/"phpunit\/phpunit": "${{ matrix.phpunit }}"/g' composer.json
+          composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run
         env:
@@ -32,11 +35,12 @@ jobs:
         run: composer cs-fixer-dry-run
 
   phpcs:
-    name: PHPCS - PHP ${{ matrix.php }}
+    name: PHPCS - PHP ${{ matrix.php }} phpunit ${{ matrix.phpunit }}
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
         php: ['8.4', '8.5']
+        phpunit: ['^10', '^11', '^12']
     runs-on: ubuntu-latest
 
     steps:
@@ -50,7 +54,9 @@ jobs:
           extensions: zip
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
+        run: |
+          sed -i 's/"phpunit\/phpunit": "^10 || ^11 || ^12"/"phpunit\/phpunit": "${{ matrix.phpunit }}"/g' composer.json
+          composer install --no-progress --prefer-dist --optimize-autoloader
 
       - name: Run PHPCS
         run: composer cs-phpcs
