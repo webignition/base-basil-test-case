@@ -11,6 +11,7 @@ use SmartAssert\DomIdentifier\ElementIdentifier;
 use webignition\BaseBasilTestCase\Enum\StatementStage;
 use webignition\BaseBasilTestCase\FailureMessage\Factory;
 use webignition\BaseBasilTestCase\FailureMessage\FailureMessage;
+use webignition\BasilModels\Model\InvalidStatementDataException;
 use webignition\BasilModels\Parser\AssertionParser;
 use webignition\SymfonyDomCrawlerNavigator\Exception\InvalidLocatorException;
 
@@ -79,6 +80,19 @@ class FactoryTest extends TestCase
                     StatementStage::EXECUTE,
                     $runtimeException,
                     []
+                ),
+            ],
+            'invalid statement json' => [
+                'statementJson' => 'invalid statement json',
+                'stage' => StatementStage::SETUP,
+                'throwable' => new InvalidStatementDataException('invalid statement json'),
+                'expected' => new FailureMessage(
+                    null,
+                    StatementStage::SETUP,
+                    new InvalidStatementDataException('invalid statement json'),
+                    [
+                        'statement_json' => 'invalid statement json',
+                    ]
                 ),
             ],
         ];
