@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase\Tests\Functional\Inspector;
 
 use PHPUnit\Framework\Attributes\DataProvider;
+use SmartAssert\DomIdentifier\ElementIdentifier;
 use webignition\BaseBasilTestCase\Inspector\Inspector;
 use webignition\BaseBasilTestCase\Tests\Functional\AbstractPantherTestCase;
-use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 
 class InspectorTest extends AbstractPantherTestCase
