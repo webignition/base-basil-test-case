@@ -29,7 +29,7 @@ abstract class AbstractBaseTest extends TestCase
     {
         self::$inspector = new Inspector();
         self::$mutator = new Mutator();
-        self::$failureMessageFactory = new Factory();
+        self::$failureMessageFactory = Factory::createFactory();
 
         if (null === self::$clientManager) {
             throw new \RuntimeException('Call self::setClientManager() first');

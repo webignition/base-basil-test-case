@@ -13,7 +13,7 @@ readonly class FailureMessage implements \Stringable
      * @param array<string, null|int|string> $context
      */
     public function __construct(
-        private StatementInterface $statement,
+        private ?StatementInterface $statement,
         private StatementStage $statementStage,
         private \Throwable $throwable,
         private array $context,
@@ -23,7 +23,7 @@ readonly class FailureMessage implements \Stringable
     {
         return (string) json_encode(
             [
-                'statement' => $this->statement->jsonSerialize(),
+                'statement' => $this->statement?->jsonSerialize() ?? null,
                 'stage' => $this->statementStage->value,
                 'exception' => [
                     'class' => $this->throwable::class,
