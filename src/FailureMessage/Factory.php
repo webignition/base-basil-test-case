@@ -10,7 +10,7 @@ use webignition\SymfonyDomCrawlerNavigator\Exception\InvalidLocatorException;
 
 readonly class Factory
 {
-    public function create(
+    public static function create(
         StatementInterface $statement,
         StatementStage $statementStage,
         \Throwable $throwable,

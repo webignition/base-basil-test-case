@@ -25,7 +25,7 @@ class FactoryTest extends TestCase
         \Throwable $throwable,
         FailureMessage $expected,
     ): void {
-        self::assertEquals($expected, new Factory()->create($statement, $stage, $throwable));
+        self::assertEquals($expected, Factory::create($statement, $stage, $throwable));
     }
 
     /**
