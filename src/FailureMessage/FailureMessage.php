@@ -10,9 +10,7 @@ use webignition\BasilModels\Model\StatementInterface;
 readonly class FailureMessage implements \Stringable
 {
     /**
-     * @param array<string, int|string> $context
-     *
-     * // stage: setup, execute
+     * @param array<string, null|int|string> $context
      */
     public function __construct(
         private StatementInterface $statement,
