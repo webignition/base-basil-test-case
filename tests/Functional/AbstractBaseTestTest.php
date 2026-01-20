@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase\Tests\Functional;
 
+use SmartAssert\DomIdentifier\ElementIdentifier;
 use webignition\BaseBasilTestCase\AbstractBaseTest;
 use webignition\BaseBasilTestCase\ClientManager;
-use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyPantherWebServerRunner\Options;
 use webignition\SymfonyPantherWebServerRunner\WebServerRunner;
 

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase\Tests\Functional\Mutator;
 
 use PHPUnit\Framework\Attributes\DataProvider;
+use SmartAssert\DomIdentifier\ElementIdentifier;
 use webignition\BaseBasilTestCase\Inspector\Inspector;
 use webignition\BaseBasilTestCase\Mutator\Mutator;
 use webignition\BaseBasilTestCase\Tests\Functional\AbstractPantherTestCase;
-use webignition\DomElementIdentifier\ElementIdentifier;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 
 class MutatorTest extends AbstractPantherTestCase
