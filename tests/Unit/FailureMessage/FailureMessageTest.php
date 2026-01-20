@@ -6,7 +6,7 @@ namespace webignition\BaseBasilTestCase\Tests\Unit\FailureMessage;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use webignition\BaseBasilTestCase\Enum\FailureReason;
+use webignition\BaseBasilTestCase\Enum\StatementStage;
 use webignition\BaseBasilTestCase\FailureMessage\FailureMessage;
 use webignition\BasilModels\Parser\ActionParser;
 use webignition\BasilModels\Parser\AssertionParser;
@@ -36,7 +36,7 @@ class FailureMessageTest extends TestCase
             'assertion setup failed, no context' => [
                 'failureMessage' => new FailureMessage(
                     $assertionParser->parse('$".selector" exists', 0),
-                    FailureReason::ASSERTION_SETUP_FAILED,
+                    StatementStage::SETUP,
                     new \RuntimeException('assertion setup failed, no context message', 123),
                     []
                 ),
@@ -49,7 +49,7 @@ class FailureMessageTest extends TestCase
                             "identifier": "$\".selector\"",
                             "operator": "exists"
                         },
-                        "reason": "assertion-setup-failed",
+                        "stage": "setup",
                         "exception": {
                             "class": "RuntimeException",
                             "code": 123,
@@ -62,7 +62,7 @@ class FailureMessageTest extends TestCase
             'assertion setup failed, has context' => [
                 'failureMessage' => new FailureMessage(
                     $assertionParser->parse('$".selector" exists', 0),
-                    FailureReason::ASSERTION_SETUP_FAILED,
+                    StatementStage::SETUP,
                     new \RuntimeException('assertion setup failed, has context message', 456),
                     [
                         'context1' => 'value1',
@@ -78,7 +78,7 @@ class FailureMessageTest extends TestCase
                             "identifier": "$\".selector\"",
                             "operator": "exists"
                         },
-                        "reason": "assertion-setup-failed",
+                        "stage": "setup",
                         "exception": {
                             "class": "RuntimeException",
                             "code": 456,
@@ -94,7 +94,7 @@ class FailureMessageTest extends TestCase
             'action setup failed, no context' => [
                 'failureMessage' => new FailureMessage(
                     $actionParser->parse('click $".selector"', 0),
-                    FailureReason::ACTION_SETUP_FAILED,
+                    StatementStage::SETUP,
                     new \RuntimeException('action setup failed, no context message', 123),
                     []
                 ),
@@ -108,7 +108,7 @@ class FailureMessageTest extends TestCase
                             "type": "click",
                             "arguments": "$\".selector\""
                         },
-                        "reason": "action-setup-failed",
+                        "stage": "setup",
                         "exception": {
                             "class": "RuntimeException",
                             "code": 123,
@@ -118,10 +118,10 @@ class FailureMessageTest extends TestCase
                     }
                     EOD,
             ],
-            'action failed, no context' => [
+            'action execution failed, no context' => [
                 'failureMessage' => new FailureMessage(
                     $actionParser->parse('click $".selector"', 0),
-                    FailureReason::ACTION_FAILED,
+                    StatementStage::EXECUTE,
                     new \RuntimeException('action setup failed, no context message', 456),
                     []
                 ),
@@ -135,7 +135,7 @@ class FailureMessageTest extends TestCase
                             "type": "click",
                             "arguments": "$\".selector\""
                         },
-                        "reason": "action-failed",
+                        "stage": "execute",
                         "exception": {
                             "class": "RuntimeException",
                             "code": 456,

@@ -4,17 +4,19 @@ declare(strict_types=1);
 
 namespace webignition\BaseBasilTestCase\FailureMessage;
 
-use webignition\BaseBasilTestCase\Enum\FailureReason;
+use webignition\BaseBasilTestCase\Enum\StatementStage;
 use webignition\BasilModels\Model\StatementInterface;
 
 readonly class FailureMessage implements \Stringable
 {
     /**
      * @param array<string, int|string> $context
+     *
+     * // stage: setup, execute
      */
     public function __construct(
         private StatementInterface $statement,
-        private FailureReason $reason,
+        private StatementStage $statementStage,
         private \Throwable $throwable,
         private array $context,
     ) {}
@@ -24,7 +26,7 @@ readonly class FailureMessage implements \Stringable
         return (string) json_encode(
             [
                 'statement' => $this->statement->jsonSerialize(),
-                'reason' => $this->reason->value,
+                'stage' => $this->statementStage->value,
                 'exception' => [
                     'class' => $this->throwable::class,
                     'code' => $this->throwable->getCode(),
