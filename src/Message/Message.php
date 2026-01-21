@@ -17,8 +17,8 @@ readonly class Message implements \Stringable
         private StatementStage $statementStage,
         private ?\Throwable $throwable,
         private ?array $context,
-        private int|string|null $expectedValue = null,
-        private int|string|null $examinedValue = null,
+        private bool|int|string|null $expectedValue = null,
+        private bool|int|string|null $examinedValue = null,
     ) {}
 
     public function __toString(): string
@@ -26,7 +26,7 @@ readonly class Message implements \Stringable
         return (string) json_encode($this->getData(), JSON_PRETTY_PRINT);
     }
 
-    public function withExpectedValue(int|string $value): self
+    public function withExpectedValue(bool|int|string $value): self
     {
         return new Message(
             $this->statement,
@@ -38,7 +38,7 @@ readonly class Message implements \Stringable
         );
     }
 
-    public function withExaminedValue(int|string $value): self
+    public function withExaminedValue(bool|int|string $value): self
     {
         return new Message(
             $this->statement,

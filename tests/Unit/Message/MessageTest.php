@@ -54,6 +54,29 @@ class MessageTest extends TestCase
                     }
                     EOD,
             ],
+            'regular exists assertion, boolean expected/examined values' => [
+                'message' => new Message(
+                    $assertionParser->parse('$".selector" exists', 0),
+                    StatementStage::EXECUTE,
+                    null,
+                    null,
+                )->withExpectedValue(true)
+                    ->withExaminedValue(false),
+                'expected' => <<<'EOD'
+                    {
+                        "statement": {
+                            "statement-type": "assertion",
+                            "source": "$\".selector\" exists",
+                            "index": 0,
+                            "identifier": "$\".selector\"",
+                            "operator": "exists"
+                        },
+                        "stage": "execute",
+                        "expected": true,
+                        "examined": false
+                    }
+                    EOD,
+            ],
             'derived exists assertion, no expected/examined values' => [
                 'message' => new Message(
                     new DerivedValueOperationAssertion(

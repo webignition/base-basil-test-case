@@ -43,8 +43,8 @@ readonly class Factory
 
     public function createAssertionMessage(
         string $statementJson,
-        int|string|null $expected,
-        int|string|null $examined,
+        bool|int|string $expected,
+        bool|int|string $examined,
     ): Message {
         $statement = null;
         $context = null;
@@ -56,14 +56,9 @@ readonly class Factory
             $context = ['statement_json' => $statementJson];
         }
 
-        $message = new Message($statement, StatementStage::EXECUTE, $throwable, $context);
-        if (null !== $expected && null !== $examined) {
-            $message = $message
-                ->withExpectedValue($expected)
-                ->withExaminedValue($examined)
-            ;
-        }
-
-        return $message;
+        return new Message($statement, StatementStage::EXECUTE, $throwable, $context)
+            ->withExpectedValue($expected)
+            ->withExaminedValue($examined)
+        ;
     }
 }

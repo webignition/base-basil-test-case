@@ -102,8 +102,8 @@ class FactoryTest extends TestCase
     #[DataProvider('createAssertionMessageDataProvider')]
     public function testCreateAssertionMessage(
         string $statementJson,
-        int|string|null $expectedValue,
-        int|string|null $examinedValue,
+        bool|int|string $expectedValue,
+        bool|int|string $examinedValue,
         Message $expected,
     ): void {
         $factory = Factory::createFactory();
@@ -127,29 +127,33 @@ class FactoryTest extends TestCase
         $isAssertion = $assertionParser->parse('$".selector" is "expected value"', 0);
 
         return [
-            'regular exists assertion, no expected/examined values' => [
+            'regular exists assertion' => [
                 'statementJson' => (string) json_encode($existsAssertion->jsonSerialize()),
-                'expectedValue' => null,
-                'examinedValue' => null,
+                'expectedValue' => true,
+                'examinedValue' => false,
                 'expected' => new Message(
                     $existsAssertion,
                     StatementStage::EXECUTE,
                     null,
                     null,
-                ),
+                )
+                    ->withExpectedValue(true)
+                    ->withExaminedValue(false),
             ],
-            'derived exists assertion, no expected/examined values' => [
+            'derived exists assertion' => [
                 'statementJson' => (string) json_encode($derivedAssertion->jsonSerialize()),
-                'expectedValue' => null,
-                'examinedValue' => null,
+                'expectedValue' => false,
+                'examinedValue' => true,
                 'expected' => new Message(
                     $derivedAssertion,
                     StatementStage::EXECUTE,
                     null,
                     null,
-                ),
+                )
+                    ->withExpectedValue(false)
+                    ->withExaminedValue(true),
             ],
-            'is assertion, has expected/examined values' => [
+            'is assertion, string expected/examined values' => [
                 'statementJson' => (string) json_encode($isAssertion->jsonSerialize()),
                 'expectedValue' => 'expected value',
                 'examinedValue' => 'examined value',
@@ -162,10 +166,23 @@ class FactoryTest extends TestCase
                     'examined value',
                 ),
             ],
+            'is assertion, integer expected/examined values' => [
+                'statementJson' => (string) json_encode($isAssertion->jsonSerialize()),
+                'expectedValue' => 123,
+                'examinedValue' => 456,
+                'expected' => new Message(
+                    $isAssertion,
+                    StatementStage::EXECUTE,
+                    null,
+                    null,
+                    123,
+                    456,
+                ),
+            ],
             'invalid statement json' => [
                 'statementJson' => 'invalid statement json',
-                'expectedValue' => null,
-                'examinedValue' => null,
+                'expectedValue' => 'expected value',
+                'examinedValue' => 'examined value',
                 'expected' => new Message(
                     null,
                     StatementStage::EXECUTE,
@@ -173,7 +190,9 @@ class FactoryTest extends TestCase
                     [
                         'statement_json' => 'invalid statement json',
                     ]
-                ),
+                )
+                    ->withExpectedValue('expected value')
+                    ->withExaminedValue('examined value'),
             ],
         ];
     }
