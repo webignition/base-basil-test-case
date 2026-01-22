@@ -11,8 +11,8 @@ use SmartAssert\DomIdentifier\ElementIdentifier;
 use webignition\BaseBasilTestCase\Enum\StatementStage;
 use webignition\BaseBasilTestCase\Message\Factory;
 use webignition\BaseBasilTestCase\Message\Message;
-use webignition\BasilModels\Model\Assertion\DerivedValueOperationAssertion;
-use webignition\BasilModels\Model\InvalidStatementDataException;
+use webignition\BasilModels\Model\Statement\Assertion\DerivedValueOperationAssertion;
+use webignition\BasilModels\Model\Statement\InvalidStatementDataException;
 use webignition\BasilModels\Parser\AssertionParser;
 use webignition\SymfonyDomCrawlerNavigator\Exception\InvalidLocatorException;
 
