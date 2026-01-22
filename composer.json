@@ -60,7 +60,7 @@
         "php": "^8.4",
         "phpunit/phpunit": "^10 || ^11 || ^12",
         "symfony/panther": "^1.0|^2.0",
-        "webignition/basil-models": "^14",
+        "webignition/basil-models": "^15",
         "webignition/symfony-panther-dom-crawler-navigator": "^3"
     },
     "require-dev": {

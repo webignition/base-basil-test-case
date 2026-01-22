@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace webignition\BaseBasilTestCase\Message;
 
 use webignition\BaseBasilTestCase\Enum\StatementStage;
-use webignition\BasilModels\Model\StatementFactory;
+use webignition\BasilModels\Model\Statement\StatementFactory;
 use webignition\SymfonyDomCrawlerNavigator\Exception\InvalidLocatorException;
 
 readonly class Factory
