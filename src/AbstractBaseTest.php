@@ -7,8 +7,8 @@ namespace webignition\BaseBasilTestCase;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Panther\Client;
 use Symfony\Component\Panther\DomCrawler\Crawler;
-use webignition\BaseBasilTestCase\FailureMessage\Factory;
 use webignition\BaseBasilTestCase\Inspector\Inspector;
+use webignition\BaseBasilTestCase\Message\Factory;
 use webignition\BaseBasilTestCase\Mutator\Mutator;
 use webignition\SymfonyDomCrawlerNavigator\Navigator;
 
@@ -17,7 +17,7 @@ abstract class AbstractBaseTest extends TestCase
     protected Navigator $navigator;
     protected static Inspector $inspector;
     protected static Mutator $mutator;
-    protected static Factory $failureMessageFactory;
+    protected static Factory $messageFactory;
     protected static Client $client;
     protected static Crawler $crawler;
     private static ?ClientManager $clientManager = null;
@@ -29,7 +29,7 @@ abstract class AbstractBaseTest extends TestCase
     {
         self::$inspector = new Inspector();
         self::$mutator = new Mutator();
-        self::$failureMessageFactory = Factory::createFactory();
+        self::$messageFactory = Factory::createFactory();
 
         if (null === self::$clientManager) {
             throw new \RuntimeException('Call self::setClientManager() first');

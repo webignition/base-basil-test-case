@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace webignition\BaseBasilTestCase\FailureMessage;
+namespace webignition\BaseBasilTestCase\Message;
 
 use webignition\BaseBasilTestCase\Enum\StatementStage;
 use webignition\BasilModels\Model\StatementFactory;
@@ -21,17 +21,16 @@ readonly class Factory
         );
     }
 
-    public function create(
+    public function createFailureMessage(
         string $statementJson,
-        StatementStage $statementStage,
         \Throwable $throwable,
-    ): FailureMessage {
-        $context = [];
+        StatementStage $statementStage,
+    ): Message {
+        $statement = null;
+        $context = null;
         if ($throwable instanceof InvalidLocatorException) {
             $context = $throwable->getContext();
         }
-
-        $statement = null;
 
         try {
             $statement = $this->statementFactory->createFromJson($statementJson);
@@ -39,6 +38,27 @@ readonly class Factory
             $context = ['statement_json' => $statementJson];
         }
 
-        return new FailureMessage($statement, $statementStage, $throwable, $context);
+        return new Message($statement, $statementStage, $throwable, $context);
+    }
+
+    public function createAssertionMessage(
+        string $statementJson,
+        bool|int|string $expected,
+        bool|int|string $examined,
+    ): Message {
+        $statement = null;
+        $context = null;
+        $throwable = null;
+
+        try {
+            $statement = $this->statementFactory->createFromJson($statementJson);
+        } catch (\Throwable $throwable) {
+            $context = ['statement_json' => $statementJson];
+        }
+
+        return new Message($statement, StatementStage::EXECUTE, $throwable, $context)
+            ->withExpectedValue($expected)
+            ->withExaminedValue($examined)
+        ;
     }
 }
